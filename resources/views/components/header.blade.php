@@ -1,4 +1,4 @@
-<nav class="w-full flex flex-row items-center z-10">
+<nav {{ $attributes->merge(['class' => 'w-full flex flex-row items-center z-10']) }}>
   @include('components.logo')
 
   <ul class="flex flex-row ms-auto gap-10 items-center text-xl text-white">

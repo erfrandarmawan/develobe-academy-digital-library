@@ -59,5 +59,9 @@
         </div>
       </section>
       <!-- Book Section: End -->
+
+      <!-- Footer Component: Start -->
+      <x-footer></x-footer>
+      <!-- Footer Component: End -->
     </body>
 </html>

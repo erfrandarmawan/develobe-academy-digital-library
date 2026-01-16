@@ -19,11 +19,11 @@
     </head>
     <body class="w-full flex flex-col">
       <!-- Header Component: Start -->
-      <x-header class="text-black px-10 mt-10"></x-header>
+      <x-header class="text-black px-5 lg:px-10 mt-5 lg:mt-10"></x-header>
       <!-- Header Component: End -->
 
       <!-- Search Filter: Start -->
-      <form class="w-75 flex flex-row rounded-lg border p-2 gap-2 mt-10 mx-10">
+      <form class="w-2/3 lg:w-75 flex flex-row rounded-lg border p-2 gap-2 mt-5 lg:mt-10 ms-5 lg:ms-10">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m17 17l4 4m-2-10a8 8 0 1 0-16 0a8 8 0 0 0 16 0"/></svg>
 
         <input type="search"
@@ -34,7 +34,7 @@
 
       <!-- Book Section: Start -->
       <section id="book-section"
-        class="w-full flex flex-col pt-5 pb-15 px-10">
+        class="w-full flex flex-col pt-5 pb-15 px-5 lg:px-10">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
           @for ($i = 0; $i < 10; $i++)
           <x-book-item></x-book-item>

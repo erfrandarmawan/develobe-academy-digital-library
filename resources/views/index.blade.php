@@ -19,7 +19,7 @@
     </head>
     <body class="w-full flex flex-col">
       <!-- Header Component: Start -->
-      <x-header class="absolute top-5 lg:top-10 left-0 px-5 lg:px-10 text-white"></x-header>
+      <x-header class="absolute top-5 lg:top-10 left-0 px-5 lg:px-10 text-white" isLightColor="true"></x-header>
       <!-- Header Component: End -->
 
       <!-- Hero Section: Start -->

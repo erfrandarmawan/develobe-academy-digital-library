@@ -1,3 +1,5 @@
+@props(['isLightColor' => false])
+
 <nav {{ $attributes->merge(['class' => 'w-full flex flex-row items-center z-10']) }}>
   <!-- Logo Component: Start -->
   @include('components.logo')
@@ -39,7 +41,7 @@
   <!-- Navigation Icon (Mobile): Start -->
   <button class="inline lg:hidden ms-auto group w-10 h-10 p-1"
     onclick="showMenu(true)">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" viewBox="0 0 24 24"><path fill="none" class="stroke-white group-hover:stroke-primary duration-200" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16M4 12h16M4 19h16"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" viewBox="0 0 24 24"><path fill="none" {{ $attributes->merge(['class' => $isLightColor ? 'stroke-white group-hover:stroke-primary duration-200' : 'stroke-black group-hover:stroke-primary duration-200']) }} stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16M4 12h16M4 19h16"/></svg>
   </button>
   <!-- Navigation Icon (Mobile): End -->
 </nav>

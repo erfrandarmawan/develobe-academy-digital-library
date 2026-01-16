@@ -24,13 +24,13 @@
 
       <!-- Category Section: Start -->
       <section id="category-section"
-        class="w-full flex flex-col pt-10 pb-15 px-5 lg:px-10">
+        class="w-full flex flex-col pt-5 lg:pt-10 pb-15 px-5 lg:px-10">
 
         <h2 class="font-bold text-2xl lg:text-4xl">
           Kategori Buku
         </h2>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-5">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 mt-5">
           @for ($i = 0; $i < 5; $i++)
           <x-category-item></x-category-item>
           @endfor

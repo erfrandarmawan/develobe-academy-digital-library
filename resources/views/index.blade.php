@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Meta Tag - Encoding Character Information: Start -->
+      <meta charset="utf-8">
+      <!-- Meta Tag - Encoding Character Information: Start -->
 
-        <title>{{ config('app.name', 'Digital Library') }}</title>
+      <!-- Meta Tag - Support Responsive Layout: Start -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Meta Tag - Support Responsive Layout: End -->
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+      <!-- Title: Start -->
+      <title>{{ config('app.name', 'Digital Library') }}</title>
+      <!-- Title: End -->
+
+      <!-- Laravel Assets: Start -->
+      @vite(['resources/css/app.css', 'resources/js/app.js'])
+      <!-- Laravel Assets: End -->
     </head>
     <body class="w-full flex flex-col">
       <!-- Header Component: Start -->
-      <x-header class="absolute top-10 left-0 px-10"></x-header>
+      <x-header class="absolute top-5 lg:top-10 left-0 px-5 lg:px-10"></x-header>
       <!-- Header Component: End -->
 
       <!-- Hero Section: Start -->
@@ -22,15 +31,15 @@
           <div class="top-0 left-0 bg-black/50 w-full h-full absolute"></div>
         </div>
 
-        <div class="w-1/2 flex flex-col gap-5 text-white z-10 items-center text-center">
-          <h1 class="font-bold text-4xl">
+        <div class="w-5/6 lg:w-1/2 flex flex-col gap-5 text-white z-10 items-center text-center">
+          <h1 class="font-bold text-2xl lg:text-4xl">
             READ ANYWHERE. ANYTIME
           </h1>
-          <p class="text-xl">
+          <p class="text-xs lg:text-xl">
             Perpustakaan digital modern yang dirancang untuk memberikan akses instan ke ribuan buku, jurnal dan sumber belajar - kapan saja, di mana saja
           </p>
           <a href="/register"
-            class="font-bold px-4 py-2 text-xl text-white bg-primary rounded-lg hover:bg-white hover:text-primary duration-200"
+            class="font-bold px-4 py-2 text-xs lg:text-xl text-white bg-primary rounded-lg hover:bg-white hover:text-primary duration-200"
             title="Klik untuk melakukan pendaftaran">
             DAFTAR SEKARANG
           </a>
@@ -40,28 +49,40 @@
 
       <!-- Book Section: Start -->
       <section id="book-section"
-        class="w-full flex flex-col py-15 px-10">
+        class="w-full flex flex-col p-5 lg:py-15 lg:px-10">
         <div class="flex flex-row items-center">
-          <h2 class="font-bold text-4xl">
+          <h2 class="font-bold text-2xl lg:text-4xl">
             Buku Terpopuler
           </h2>
           <a href="/books"
             title="Klik untuk melihat lebih banyak buku"
-            class="hover:text-primary duration-200 ms-auto text-xl">
+            class="hidden lg:inline hover:text-primary duration-200 ms-auto text-xl">
             Lihat lainnya
           </a>
         </div>
 
-        <div class="grid grid-cols-4 gap-10 mt-4">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 mt-4">
           @for ($i = 0; $i < 8; $i++)
           <x-book-item></x-book-item>
           @endfor
         </div>
+
+        <a href="/books"
+          title="Klik untuk melihat lebih banyak buku"
+          class="inline lg:hidden hover:text-primary duration-200 mt-5 mx-auto text-base">
+          Lihat lainnya
+        </a>
       </section>
       <!-- Book Section: End -->
 
       <!-- Footer Component: Start -->
       <x-footer></x-footer>
       <!-- Footer Component: End -->
+
+      <script>
+        function showMenu(isVisible){
+          console.log("showMenu:", isVisible);
+        }
+      </script>
     </body>
 </html>

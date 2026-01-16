@@ -4,7 +4,7 @@
   <!-- Logo Component: End -->
 
   <!-- Navigation Menu (Desktop): Start -->
-  <ul class="hidden lg:flex flex-row ms-auto gap-10 items-center text-xl text-white">
+  <ul class="hidden lg:flex flex-row ms-auto gap-10 items-center text-xl font-medium">
     <li>
       <a href="/"
         class="hover:text-primary duration-200"
@@ -28,7 +28,7 @@
     </li>
     <li>
       <a href="/login"
-        class="bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
+        class="border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
         title="Klik untuk membuka halaman awal">
         Masuk
       </a>

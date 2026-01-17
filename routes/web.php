@@ -21,3 +21,7 @@ Route::get('/books/{slug}', function (string $slug) {
 Route::get('/login', function () {
     return view('auth/login');
 });
+
+Route::get('/register', function () {
+    return view('auth/register');
+});

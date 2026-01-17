@@ -13,3 +13,7 @@ Route::get('/books', function () {
 Route::get('/categories', function () {
     return view('categories/index');
 });
+
+Route::get('/books/{slug}', function (string $slug) {
+    return view('books/details', ['slug' => $slug]);
+});

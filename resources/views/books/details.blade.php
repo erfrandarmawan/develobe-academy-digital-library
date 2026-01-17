@@ -71,15 +71,19 @@
 
           <hr class="my-5" />
 
+          <!-- Book Description: Start -->
           <p class="text-sm lg:text-base text-justify leading-relaxed">
             Deskripsi Buku di sini. HTML adalah fondasi utama dari setiap halaman web di dunia. Tanpa HTML, tidak ada teks, gambar, tautan, atau struktur yang dapat ditampilkan di browser. Namun, bagi banyak pemula, mempelajari HTML sering kali terasa membingungkan karena istilah teknis dan sintaks yang terlihat rumit. Buku ini hadir untuk menjembatani kesenjangan itu. Dengan penjelasan langkah demi langkah, ilustrasi visual, dan contoh kode yang relevan, Anda akan memahami bagaimana sebuah halaman web dibangun dari nol — bahkan tanpa pengalaman pemrograman sekalipun.
           </p>
+          <!-- Book Description: End -->
 
+          <!-- Read Button: Start -->
           <a href="#"
             class="w-fit mt-5 font-bold uppercase border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
             title="Klik untuk membuka halaman awal">
             Baca Online
           </a>
+          <!-- Read Button: End -->
         </div>
       </section>
       <!-- Book Details Section: End -->

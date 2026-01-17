@@ -34,12 +34,12 @@
         <!-- Background: End -->
 
         <!-- Form: Start -->
-        <form class="w-4/12 bg-white px-5 py-20 flex flex-col items-center justify-center gap-5 z-1 rounded-3xl">
+        <form class="w-11/12 lg:w-4/12 bg-white px-5 py-10 lg:px-5 lg:py-20 flex flex-col items-center justify-center gap-5 z-1 rounded-3xl">
           <h1 class="font-bold text-xl">
             DIGILIB.IO
           </h1>
 
-          <div class="w-full flex flex-col gap-1 mt-5">
+          <div class="text-sm lg:text-base w-full flex flex-col gap-1 lg:mt-5">
             <label for="email-field"
               class="text-base">
               Email
@@ -50,7 +50,7 @@
               placeholder="Email Anda"/>
           </div>
 
-          <div class="w-full flex flex-col gap-1">
+          <div class="text-sm lg:text-base w-full flex flex-col gap-1">
             <label for="password-field"
               class="text-base">
               Kata Sandi
@@ -62,7 +62,7 @@
           </div>
 
           <button type="submit"
-            class="w-full font-bold uppercase border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 cursor-pointer">
+            class="text-sm lg:text-base w-full font-bold uppercase border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 cursor-pointer">
             Masuk
           </button>
 

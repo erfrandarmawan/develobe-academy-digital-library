@@ -24,8 +24,8 @@
 
       <!-- Book Details Section: Start -->
       <section id="book-details-section"
-        class="w-full flex flex-row pt-5 pb-15 px-5 lg:px-10 gap-10 mt-10">
-        <div class="w-90 min-w-90 h-fit rounded-3xl overflow-hidden bg-slate-500">
+        class="w-full flex flex-col lg:flex-row pt-5 pb-15 px-5 lg:px-10 gap-5 lg:gap-10 mt-5 lg:mt-10">
+        <div class="w-full lg:w-90 lg:min-w-90 h-fit rounded-3xl overflow-hidden bg-slate-500">
           <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             class="w-full h-full object-contain hover:scale-110 duration-200"
             alt="Cover buku"/>
@@ -33,7 +33,7 @@
 
         <div class="w-full flex flex-col">
           <!-- Book Title: Start -->
-          <h1 class="font-bold text-4xl">
+          <h1 class="font-bold text-2xl lg:text-4xl">
             Judul Buku
           </h1>
           <!-- Book Title: End -->
@@ -71,7 +71,7 @@
 
           <hr class="my-5" />
 
-          <p class="text-base">
+          <p class="text-sm lg:text-base text-justify leading-relaxed">
             Deskripsi Buku di sini. HTML adalah fondasi utama dari setiap halaman web di dunia. Tanpa HTML, tidak ada teks, gambar, tautan, atau struktur yang dapat ditampilkan di browser. Namun, bagi banyak pemula, mempelajari HTML sering kali terasa membingungkan karena istilah teknis dan sintaks yang terlihat rumit. Buku ini hadir untuk menjembatani kesenjangan itu. Dengan penjelasan langkah demi langkah, ilustrasi visual, dan contoh kode yang relevan, Anda akan memahami bagaimana sebuah halaman web dibangun dari nol — bahkan tanpa pengalaman pemrograman sekalipun.
           </p>
 

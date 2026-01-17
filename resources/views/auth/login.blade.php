@@ -70,7 +70,7 @@
             <a href="/register"
               title="Klik untuk membuat akun baru"
               class="text-black hover:text-primary duration-200">
-              Buat Akun
+              Daftar Akun
             </a>
             <span>
               |

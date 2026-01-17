@@ -17,3 +17,7 @@ Route::get('/categories', function () {
 Route::get('/books/{slug}', function (string $slug) {
     return view('books/details', ['slug' => $slug]);
 });
+
+Route::get('/login', function () {
+    return view('auth/login');
+});

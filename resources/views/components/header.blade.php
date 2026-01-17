@@ -17,23 +17,31 @@
     <li>
       <a href="/books"
         class="hover:text-primary duration-200"
-        title="Klik untuk membuka halaman awal">
+        title="Klik untuk membuka halaman buku">
         Buku
       </a>
     </li>
     <li>
       <a href="/categories"
         class="hover:text-primary duration-200"
-        title="Klik untuk membuka halaman awal">
+        title="Klik untuk membuka halaman kategori">
         Kategori
       </a>
     </li>
     <li>
+      @if (request()->path() === 'login')
+      <a href="/register"
+        class="border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
+        title="Klik untuk membuat akun baru">
+        Daftar
+      </a>
+      @else
       <a href="/login"
         class="border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
-        title="Klik untuk membuka halaman awal">
+        title="Klik untuk masuk ke portal pengguna">
         Masuk
       </a>
+      @endif
     </li>
   </ul>
   <!-- Navigation Menu (Desktop): End -->

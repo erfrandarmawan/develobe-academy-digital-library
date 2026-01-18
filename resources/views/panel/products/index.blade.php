@@ -24,7 +24,7 @@
 
       <!-- Panel Section: Start -->
       <section id="panel-section"
-        class="w-full h-[90vh] flex flex-row gap-10 items-center p-5 lg:px-10 lg:py-20">
+        class="w-full h-full lg:h-[90vh] flex flex-row gap-10 items-center p-5 lg:px-10 lg:py-20">
         <!-- Side Menu: Start -->
         <x-panel-sidebar></x-panel-sidebar>
         <!-- Side Menu: End -->

@@ -47,7 +47,7 @@
             <table class="min-w-max w-full h-full border border-gray-200 rounded-lg text-left text-xs lg:text-sm">
               <thead class="bg-gray-100">
                 <tr>
-                  <th class="px-3 py-2 w-50">Action</th>
+                  <th class="px-3 py-2 w-80">Action</th>
                   <th class="px-3 py-2 w-40">Title</th>
                   <th class="px-3 py-2 w-40">Slug</th>
                   <th class="px-3 py-2 w-40">Category</th>
@@ -62,9 +62,18 @@
                 @for ($i = 0; $i < 20; $i++)
                 <tr class="hover:bg-gray-50 duration-150">
                   <td class="px-3 py-2 flex flex-row gap-2">
-                    <a href="#" class="border border-primary bg-primary text-white rounded-md hover:bg-white hover:text-primary duration-200 py-1 px-2">Edit</a>
-                    <a href="#" class="border border-green-500 bg-green-500 text-white rounded-md hover:bg-white hover:text-green-500 duration-200 py-1 px-2">Approve</a>
-                    <a href="#" class="border border-red-500 bg-red-500 text-white rounded-md hover:bg-white hover:text-red-500 duration-200 py-1 px-2">Reject</a>
+                    <a href="#" 
+                      class="border border-yellow-500 bg-yellow-500 text-white rounded-md hover:bg-white hover:text-yellow-500 duration-200 py-1 px-2">
+                      Review
+                    </a>
+                    <a href="#" 
+                      class="border border-primary bg-primary text-white rounded-md hover:bg-white hover:text-primary duration-200 py-1 px-2">
+                      Edit Data
+                    </a>
+                    <a href="#" 
+                      class="border border-red-500 bg-red-500 text-white rounded-md hover:bg-white hover:text-red-500 duration-200 py-1 px-2">
+                      Hapus Data
+                    </a>
                   </td>
                   <td class="px-3 py-2">
                     Judul Buku
@@ -77,7 +86,7 @@
                   </td>
                   <td class="px-3 py-2">
                     <span @class([
-                      'px-2 py-1 rounded text-xs font-semibold',
+                      'px-2 py-1 rounded text-xs font-semibold uppercase',
                       'bg-green-100 text-green-700'
                     ])>
                       Published

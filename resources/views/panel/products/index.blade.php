@@ -24,9 +24,9 @@
 
       <!-- Panel Section: Start -->
       <section id="panel-section"
-        class="w-full h-[90vh] flex flex-row gap-10 items-center px-10 py-20">
+        class="w-full h-[90vh] flex flex-row gap-10 items-center p-5 lg:px-10 lg:py-20">
         <!-- Side Menu: Start -->
-        <aside class="w-3/12 min-w-3/12 bg-white px-5 py-10 rounded-lg drop-shadow-lg flex flex-col items-center">
+        <aside class="w-3/12 min-w-3/12 bg-white px-5 py-10 rounded-lg drop-shadow-lg hidden lg:flex flex-col items-center">
           <!-- Avatar Image: Start -->
           <div class="w-30 h-30 border-4 border-primary rounded-full overflow-hidden p-2">
             <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -84,21 +84,21 @@
         <!-- Side Menu: End -->
 
         <!-- Panel Content: Start -->
-        <main class="w-full h-full bg-white overflow-y-scroll rounded-lg drop-shadow-lg flex flex-col p-5">
+        <main class="w-full h-full bg-white overflow-y-scroll rounded-lg drop-shadow-lg flex flex-col p-3 lg:p-5">
           <div class="flex flex-row">
-            <h1 class="font-bold text-2xl">
+            <h1 class="font-bold text-base lg:text-2xl">
               Semua Karya
             </h1>
 
             <a href="#"
-              class="ms-auto border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4 font-bold"
+              class="ms-auto border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base"
               title="Klik untuk menambah karya">
               Tambah Data
             </a>
           </div>
 
-          <div class="overflow-x-auto mt-5">
-            <table class="min-w-max w-full h-full border border-gray-200 rounded-lg text-left text-sm">
+          <div class="overflow-x-auto mt-3 lg:mt-5">
+            <table class="min-w-max w-full h-full border border-gray-200 rounded-lg text-left text-xs lg:text-sm">
               <thead class="bg-gray-100">
                 <tr>
                   <th class="px-3 py-2 w-50">Action</th>

@@ -10,26 +10,31 @@
     <li>
       <a href="/"
         class="hover:text-primary duration-200"
-        title="Klik untuk membuka halaman awal">
+        title="Klik untuk membuka halaman 'Beranda'">
         Beranda
       </a>
     </li>
     <li>
       <a href="/books"
         class="hover:text-primary duration-200"
-        title="Klik untuk membuka halaman buku">
+        title="Klik untuk membuka halaman 'Buku'">
         Buku
       </a>
     </li>
     <li>
       <a href="/categories"
         class="hover:text-primary duration-200"
-        title="Klik untuk membuka halaman kategori">
+        title="Klik untuk membuka halaman 'Kategori'">
         Kategori
       </a>
     </li>
     <li>
-      @if (request()->path() === 'login')
+      @if (request()->is('panel*'))
+      <span class="font-bold text-xl">
+        Hello, Erfran Darmawan
+      </span>
+
+      @elseif (request()->path() === 'login')
       <a href="/register"
         class="border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
         title="Klik untuk membuat akun baru">
@@ -58,41 +63,90 @@
 <div id="mobile-nav-layout"
   class="hidden w-full h-full fixed top-0 left-0 bg-white z-50 p-5">
   <div class="flex flex-col">
-    <button class="ms-auto w-10 h-10 p-1"
-      onclick="showMenu(false)">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" viewBox="0 0 24 24"><path class="fill-red-500" d="m6.4 18.308l-.708-.708l5.6-5.6l-5.6-5.6l.708-.708l5.6 5.6l5.6-5.6l.708.708l-5.6 5.6l5.6 5.6l-.708.708l-5.6-5.6z"/></svg>
-    </button>
+    <div class="flex flex-row items-center">
+      @if (request()->is('panel*'))
+      <span class="font-bold text-xl">
+        Hello, Erfran Darmawan
+      </span>
+      @endif
 
+      <button class="ms-auto w-10 h-10 p-1"
+        onclick="showMenu(false)">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" viewBox="0 0 24 24"><path class="fill-red-500" d="m6.4 18.308l-.708-.708l5.6-5.6l-5.6-5.6l.708-.708l5.6 5.6l5.6-5.6l.708.708l-5.6 5.6l5.6 5.6l-.708.708l-5.6-5.6z"/></svg>
+      </button>
+    </div>
+
+    @if (request()->is('panel*'))
+    <ul class="mt-5 flex flex-col gap-5 text-base text-black font-medium">
+      <li>
+        <a href="/"
+          class="hover:text-primary duration-200"
+          title="Klik untuk membuka halaman 'Beranda'">
+          Kembali ke Beranda
+        </a>
+      </li>
+      <li>
+        <a href="/panel"
+          class="hover:text-primary duration-200"
+          title="Klik untuk membuka halaman 'Semua Karya'">
+          Semua Karya
+        </a>
+      </li>
+      <li>
+        <a href="/panel/settings"
+          class="hover:text-primary duration-200"
+          title="Klik untuk membuka halaman 'Pengaturan Data'">
+          Pengaturan Data
+        </a>
+      </li>
+      <li>
+        <a href="/panel/change-password"
+          class="hover:text-primary duration-200"
+          title="Klik untuk membuka halaman 'Pengaturan Kata Sandi'">
+          Pengaturan Kata Sandi
+        </a>
+      </li>
+      <li>
+        <a href="/panel/logout"
+          class="bg-red-500 text-white rounded-lg hover:bg-white hover:text-red-500 duration-200 py-2 px-4"
+          title="Klik untuk keluar dari portal pengguna">
+          Keluar
+        </a>
+      </li>
+    </ul>
+    
+    @else
     <ul class="flex flex-col gap-5 text-base text-black font-medium">
       <li>
         <a href="/"
           class="hover:text-primary duration-200"
-          title="Klik untuk membuka halaman awal">
+          title="Klik untuk membuka halaman 'Beranda'">
           Beranda
         </a>
       </li>
       <li>
         <a href="/books"
           class="hover:text-primary duration-200"
-          title="Klik untuk membuka halaman awal">
+          title="Klik untuk membuka halaman 'Buku'">
           Buku
         </a>
       </li>
       <li>
         <a href="/categories"
           class="hover:text-primary duration-200"
-          title="Klik untuk membuka halaman awal">
+          title="Klik untuk membuka halaman 'Kategori'">
           Kategori
         </a>
       </li>
       <li>
         <a href="/login"
           class="bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
-          title="Klik untuk membuka halaman awal">
+          title="Klik untuk masuk ke portal pengguna">
           Masuk
         </a>
       </li>
     </ul>
+    @endif
   </div>
 </div>
 <!-- Mobile Navigation Layout: End -->

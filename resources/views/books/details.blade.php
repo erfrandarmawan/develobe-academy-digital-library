@@ -80,7 +80,7 @@
           <!-- Read Button: Start -->
           <a href="#"
             class="w-fit mt-5 font-bold uppercase border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
-            title="Klik untuk membuka halaman awal">
+            title="Klik untuk membaca buku">
             Baca Online
           </a>
           <!-- Read Button: End -->

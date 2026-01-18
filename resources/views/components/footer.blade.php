@@ -46,21 +46,21 @@
         <li>
           <a href="/"
             class="hover:text-primary duration-200"
-            title="Klik untuk membuka halaman awal">
+            title="Klik untuk membuka halaman 'Beranda'">
             Beranda
           </a>
         </li>
         <li>
           <a href="/books"
             class="hover:text-primary duration-200"
-            title="Klik untuk membuka halaman awal">
+            title="Klik untuk membuka halaman 'Buku'">
             Buku
           </a>
         </li>
         <li>
           <a href="/categories"
             class="hover:text-primary duration-200"
-            title="Klik untuk membuka halaman awal">
+            title="Klik untuk membuka halaman 'Kategori'">
             Kategori
           </a>
         </li>

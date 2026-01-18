@@ -16,35 +16,35 @@
   <!-- Navigation: Start -->
   <ul class="w-full flex flex-col mt-5 gap-2 text-black font-bold text-sm">
     <li class="flex">
-      <a href="#"
+      <a href="/panel"
         class="{{ request()->path() === 'panel' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Semua Karya'">
         Semua Karya
       </a>
     </li>
     <li class="flex">
-      <a href="#"
+      <a href="/panel/users"
         class="{{ request()->path() === 'panel/users' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Manajemen Pengguna'">
         Manajemen Pengguna
       </a>
     </li>
     <li class="flex">
-      <a href="#"
+      <a href="/panel/settings"
         class="{{ request()->path() === 'panel/settings' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Pengaturan Data'">
         Pengaturan Data
       </a>
     </li>
     <li class="flex">
-      <a href="#"
+      <a href="/panel/change-password"
         class="{{ request()->path() === 'panel/change-password' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Pengaturan Kata Sandi'">
         Pengaturan Kata Sandi
       </a>
     </li>
     <li class="flex">
-      <a href="#"
+      <a href="/panel/logout"
         class="hover:bg-gray-500/5 hover:text-primary rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk keluar dari portal pengguna">
         Keluar

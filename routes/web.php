@@ -41,3 +41,7 @@ Route::get('/panel/product/form', function () {
 Route::get('/panel/product/detail', function () {
     return view('panel/products/detail');
 });
+
+Route::get('/panel/users', function () {
+    return view('panel/users/index');
+});

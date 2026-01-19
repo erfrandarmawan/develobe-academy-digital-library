@@ -49,3 +49,7 @@ Route::get('/panel/users', function () {
 Route::get('/panel/settings', function () {
     return view('panel/settings/index');
 });
+
+Route::get('/panel/change-password', function () {
+    return view('panel/settings/change-password');
+});

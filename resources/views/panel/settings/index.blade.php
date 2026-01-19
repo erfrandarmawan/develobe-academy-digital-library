@@ -24,13 +24,13 @@
 
       <!-- Panel Section: Start -->
       <section id="panel-section"
-        class="w-full h-full lg:h-auto flex flex-row gap-10 items-center p-5 lg:px-10 lg:py-20">
+        class="w-full h-full lg:h-[90vh] flex flex-row gap-10 items-center p-5 lg:px-10 lg:py-20">
         <!-- Side Menu: Start -->
         <x-panel-sidebar></x-panel-sidebar>
         <!-- Side Menu: End -->
 
         <!-- Panel Content: Start -->
-        <main class="w-full h-full bg-white overflow-y-scroll rounded-lg drop-shadow-lg flex flex-col p-3 lg:p-5">
+        <main class="w-full h-full lg:h-auto bg-white overflow-y-scroll rounded-lg drop-shadow-lg flex flex-col p-3 lg:p-5">
           <div class="flex flex-row">
             <h1 class="font-bold text-base lg:text-2xl">
               Pengaturan Data

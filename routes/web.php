@@ -34,6 +34,10 @@ Route::get('/panel', function () {
     return view('panel/products/index');
 });
 
-Route::get('/panel/form', function () {
+Route::get('/panel/product/form', function () {
     return view('panel/products/form');
+});
+
+Route::get('/panel/product/detail', function () {
+    return view('panel/products/detail');
 });

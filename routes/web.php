@@ -45,3 +45,7 @@ Route::get('/panel/product/detail', function () {
 Route::get('/panel/users', function () {
     return view('panel/users/index');
 });
+
+Route::get('/panel/settings', function () {
+    return view('panel/settings/index');
+});

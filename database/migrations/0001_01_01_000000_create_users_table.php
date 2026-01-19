@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('role', ['admin', 'user']);
             $table->string('password', 255);
             $table->string('avatar_path', 255)->nullable();
+            $table->boolean('status')->default(true);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

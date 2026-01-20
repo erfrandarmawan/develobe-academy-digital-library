@@ -21,18 +21,6 @@ Route::get('/books/{slug}', function (string $slug) {
     return view('books.details', ['slug' => $slug]);
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
-
-Route::get('/register', function () {
-    return view('auth.register');
-});
-
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-});
-
 Route::middleware(RedirectIfAuthenticated::class)->group(function() {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'handleLogin']);
@@ -58,9 +46,8 @@ Route::middleware('auth')->group(function () {
     
     Route::delete('/panel/book/{book}/delete', [BookController::class, 'handleDelete'])->name('books.delete');
 
-    Route::get('/panel/book/detail', function () {
-        return view('panel.books.detail');
-    });
+    Route::get('/panel/book/{book}/approval', [BookController::class, 'showApproval'])->name('books.show.approval');
+    Route::put('/panel/book/{book}/approval', [BookController::class, 'handleApproval'])->name('books.approval');
 
     Route::get('/panel/users', function () {
         return view('panel.users.index');

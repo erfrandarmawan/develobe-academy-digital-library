@@ -44,6 +44,13 @@ class BookController extends Controller
         ]);
     }
 
+    public function showApproval(Book $book){
+        return view('panel.books.detail', [
+            'book' => $book,
+            'categories' => Category::all(),
+        ]);
+    }
+
     public function handleCreate(Request $request){
         // Validate input
         $request->validate([
@@ -127,5 +134,23 @@ class BookController extends Controller
 
         // Return response
         return back()->with('success', 'Karya berhasil dihapus!');
+    }
+
+    public function handleApproval(Request $request, Book $book){
+        // Validate input
+        $request->validate([
+            'approval' => 'required|in:approve,reject'
+        ]);
+
+        // Update book status
+        $book->status = $request->approval === 'approve'
+            ? 'approved'
+            : 'rejected';
+
+        // Save to database
+        $book->save();
+
+        // Return response
+        return redirect()->route('books.index')->with('success', 'Approval berhasil dikirim!');
     }
 }

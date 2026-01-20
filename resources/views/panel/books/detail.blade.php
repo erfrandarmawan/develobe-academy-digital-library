@@ -43,7 +43,12 @@
             </a>
           </div>
 
-          <form class="w-full lg:w-1/2 flex flex-col gap-4">
+          <form class="w-full lg:w-1/2 flex flex-col gap-4"
+            method="POST"
+            action="{{ route('books.approval', $book) }}">
+            @csrf
+            @method('PUT')
+
             <div class="text-sm lg:text-base w-full flex flex-col gap-1 mt-4">
               <label for="title-field"
                 class="text-base">
@@ -53,7 +58,7 @@
                 type="text"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30 read-only:bg-gray-200"
                 placeholder="Judul Karya Anda"
-                value="Sample Judul"
+                value="{{ $book->title }}"
                 readonly
                 disabled/>
             </div>
@@ -67,6 +72,7 @@
                 type="text"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30 read-only:bg-gray-200"
                 placeholder="URL Karya Anda"
+                value="{{ $book->slug }}"
                 readonly
                 disabled/>
             </div>
@@ -81,7 +87,7 @@
                 rows="5"
                 placeholder="Deskripsi Karya Anda"
                 readonly
-                disabled></textarea>
+                disabled>{{ $book->description }}</textarea>
             </div>
 
             <div class="text-sm lg:text-base w-full flex flex-col gap-1">
@@ -94,8 +100,12 @@
                 readonly
                 disabled>
                 <option disabled selected>Pilih Kategori</option>
-                <option>Kategori A</option>
-                <option>Kategori B</option>
+                @foreach ($categories as $category)
+                  <option value="{{ $category->id }}"
+                    @selected(old('category_id', $book->category_id ?? '') == $category->id)>
+                    {{ $category->title }}
+                  </option>
+                @endforeach
               </select>
             </div>
 
@@ -104,13 +114,10 @@
                 class="text-base">
                 Foto Karya (Max 2 MB)
               </label>
-              <input id="image-field"
-                type="file"
-                accept="image/*"
-                class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30 read-only:bg-gray-200"
-                placeholder="Foto Karya Anda"
-                readonly
-                disabled/>
+              @if ($book && $book->image_path)
+                <img src="{{ asset('storage/' . $book->image_path) }}"
+                  class="w-32 rounded-md mt-2" />
+              @endif
             </div>
 
             <div class="text-sm lg:text-base w-full flex flex-col gap-1">
@@ -118,13 +125,13 @@
                 class="text-base">
                 File PDF (Max 10 MB)
               </label>
-              <input id="file-field"
-                type="file"
-                accept="application/pdf"
-                class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30 read-only:bg-gray-200"
-                placeholder="File PDF Karya Anda"
-                readonly
-                disabled/>
+              @if ($book && $book->file_path)
+                <a href="{{ asset('storage/' . $book->file_path) }}"
+                  target="_blank"
+                  class="text-primary underline mt-2 block">
+                  Lihat File PDF
+                </a>
+              @endif
             </div>
 
             <div class="text-sm lg:text-base w-full flex flex-col gap-1">
@@ -133,30 +140,19 @@
                 Review Karya
               </label>
               <select id="approval-field"
+                name="approval"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 required>
                 <option disabled selected>Pilih Approval</option>
-                <option>APPROVE</option>
-                <option>REJECT</option>
+                <option value="approve">SETUJU</option>
+                <option value="reject">TOLAK</option>
               </select>
             </div>
 
-            <div class="text-sm lg:text-base w-full flex flex-col gap-1">
-              <label for="note-field"
-                class="text-base">
-                Catatan Review
-              </label>
-              <input id="note-field"
-                type="text"
-                class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30 read-only:bg-gray-200"
-                placeholder="Catatan Review Karya"
-                required/>
-            </div>
-
             <button type="submit" 
-              class="w-fit border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base">
+              class="w-fit border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base cursor-pointer">
               Berikan Review
-            </a>
+            </button>
           </form>
         </main>
         <!-- Panel Content: End -->

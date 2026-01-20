@@ -43,6 +43,12 @@
             </a>
           </div>
 
+          @if (session('success'))
+            <div class="p-3 bg-green-100 border text-green-700 rounded-md text-sm mt-4">
+              {{ session('success') }}
+            </div>
+          @endif
+
           <div class="overflow-x-auto mt-3 lg:mt-5">
             <table class="min-w-max w-full h-full border border-gray-200 rounded-lg text-left text-xs lg:text-sm">
               <thead class="bg-gray-100">
@@ -76,10 +82,16 @@
                     </a>
                     @endif
 
-                    <a href="#" 
-                      class="border border-red-500 bg-red-500 text-white rounded-md hover:bg-white hover:text-red-500 duration-200 py-1 px-2">
-                      Hapus Data
-                    </a>
+                    <form action="{{ route('books.delete', $book->id) }}" 
+                      method="POST" 
+                      onsubmit="return confirm('Apakah Anda yakin untuk menghapus data ini?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                          class="border border-red-500 bg-red-500 text-white rounded-md hover:bg-white hover:text-red-500 duration-200 py-1 px-2 cursor-pointer">
+                          Hapus Data
+                        </button>
+                    </form>
                   </td>
                   <td class="px-3 py-2">
                     {{ $book->title }}

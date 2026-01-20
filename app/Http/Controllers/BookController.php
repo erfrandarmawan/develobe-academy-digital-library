@@ -120,4 +120,12 @@ class BookController extends Controller
         // Return response
         return redirect()->back()->with('success', 'Karya berhasil diperbarui!');
     }
+
+    public function handleDelete(Book $book){
+        // Soft delete
+        $book->delete();
+
+        // Return response
+        return back()->with('success', 'Karya berhasil dihapus!');
+    }
 }

@@ -159,7 +159,7 @@
             </div>
 
             <button type="submit" 
-              class="w-fit border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base">
+              class="w-fit border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base cursor-pointer">
               {{ $book ? 'Update Karya' : 'Kirim Karya' }}
             </a>
           </form>

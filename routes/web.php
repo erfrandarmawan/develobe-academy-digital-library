@@ -55,6 +55,8 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/panel/book/{book}/edit', [BookController::class, 'showUpdateForm'])->name('books.show.update');
     Route::put('/panel/book/{book}', [BookController::class, 'handleUpdate'])->name('books.update');
+    
+    Route::delete('/panel/book/{book}/delete', [BookController::class, 'handleDelete'])->name('books.delete');
 
     Route::get('/panel/book/detail', function () {
         return view('panel.books.detail');

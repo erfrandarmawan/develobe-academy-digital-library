@@ -40,7 +40,6 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function() {
     Route::post('/register', [AuthController::class, 'handleRegister']);
 
     Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('forgot-password');
-    Route::post('/logout', [AuthController::class, 'handleLogout'])->name('logout');
 });
 
 Route::middleware('auth')->group(function () {
@@ -67,4 +66,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/panel/change-password', function () {
         return view('panel.settings.change-password');
     });
+
+    Route::post('/logout', [AuthController::class, 'handleLogout'])->name('logout');
 });

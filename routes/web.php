@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::get('/', function () {
     return view('index');
@@ -31,11 +32,16 @@ Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 });
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('forgot-password');
-Route::post('/login', [AuthController::class, 'handleLogin']);
-Route::post('/logout', [AuthController::class, 'handleLogout'])->name('logout');
+Route::middleware(RedirectIfAuthenticated::class)->group(function() {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'handleLogin']);
+
+    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/register', [AuthController::class, 'handleRegister']);
+
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('forgot-password');
+    Route::post('/logout', [AuthController::class, 'handleLogout'])->name('logout');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/panel', function () {

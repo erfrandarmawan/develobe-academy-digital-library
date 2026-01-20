@@ -17,7 +17,7 @@ class UserController extends Controller
             $users = User::orderBy('created_at', 'desc')
                 ->paginate(10);
         } else {
-            return redirect('books.index');
+            return redirect()->route('books.index');
         }
 
         return view('panel.users.index', compact('users'));

@@ -2,7 +2,7 @@
   <!-- Avatar Image: Start -->
   <div class="w-30 h-30 border-4 border-primary rounded-full overflow-hidden p-2">
     <img class="w-full h-full object-cover rounded-full"
-      src="{{ asset('storage/' . auth()->user()->avatar_path) }}"
+      src="{{ auth()->user()->avatar_path ? asset('storage/' . auth()->user()->avatar_path) : 'https://placehold.co/300x300?text=Develobe+Academy' }}"
       alt="Avatar Pengguna"/>
   </div>
   <!-- Avatar Image: End -->
@@ -19,9 +19,11 @@
       <a href="/panel"
         class="{{ request()->path() === 'panel' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Semua Karya'">
-        Semua Karya
+        {{ auth()->user()->role === 'admin' ? 'Semua Karya' : 'Karya Saya' }}
       </a>
     </li>
+    
+    @if (auth()->user()->role === 'admin')
     <li class="flex">
       <a href="/panel/users"
         class="{{ request()->path() === 'panel/users' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
@@ -29,6 +31,8 @@
         Manajemen Pengguna
       </a>
     </li>
+    @endif
+
     <li class="flex">
       <a href="/panel/profile"
         class="{{ request()->path() === 'panel/profile' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"

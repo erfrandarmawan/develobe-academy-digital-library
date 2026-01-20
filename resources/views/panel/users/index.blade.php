@@ -37,6 +37,12 @@
             </h1>
           </div>
 
+          @if (session('success'))
+            <div class="p-3 bg-green-100 border text-green-700 rounded-md text-sm mt-4">
+              {{ session('success') }}
+            </div>
+          @endif
+
           <div class="overflow-x-auto mt-3 lg:mt-5">
             <table class="min-w-max w-full h-full border border-gray-200 rounded-lg text-left text-xs lg:text-sm">
               <thead class="bg-gray-100">
@@ -54,15 +60,27 @@
                 <tr class="hover:bg-gray-50 duration-150">
                   <td class="px-3 py-2 flex flex-row gap-2">
                     @if ($user->status)
-                      <a href="#" 
-                        class="border border-red-500 bg-red-500 text-white rounded-md hover:bg-white hover:text-red-500 duration-200 py-1 px-2">
-                        Block User
-                      </a>
+                      <form action="{{ route('users.block', $user->id) }}" 
+                        method="POST" 
+                        onsubmit="return confirm('Apakah Anda yakin untuk melakukan blokir pada user ini?');">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit"
+                          class="border border-red-500 bg-red-500 text-white rounded-md hover:bg-white hover:text-red-500 duration-200 py-1 px-2 cursor-pointer">
+                          Block User
+                        </button>
+                      </form>
                     @else
-                      <a href="#" 
-                        class="border border-green-500 bg-green-500 text-white rounded-md hover:bg-white hover:text-green-500 duration-200 py-1 px-2">
-                        Unblock User
-                      </a>
+                      <form action="{{ route('users.unblock', $user->id) }}" 
+                        method="POST" 
+                        onsubmit="return confirm('Apakah Anda yakin untuk mengaktifkan kembali user ini?');">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit"
+                          class="border border-green-500 bg-green-500 text-white rounded-md hover:bg-white hover:text-green-500 duration-200 py-1 px-2 cursor-pointer">
+                          Unblock User
+                        </button>
+                      </form>
                     @endif
                   </td>
                   <td class="px-3 py-2">

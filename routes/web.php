@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/panel/users', [UserController::class, 'index'])->name('users.index');
+    Route::put('/users/{user}/block', [UserController::class, 'handleBlock'])->name('users.block');
+    Route::put('/users/{user}/unblock', [UserController::class, 'handleUnblock'])->name('users.unblock');
 
     Route::get('/panel/settings', function () {
         return view('panel.settings.index');

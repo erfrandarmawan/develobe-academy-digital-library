@@ -20,4 +20,20 @@ class UserController extends Controller
 
         return view('panel.users.index', compact('users'));
     }
+
+    public function handleBlock(User $user){
+        $user->update([
+            'status' => 0
+        ]);
+
+        return back()->with('success', 'User berhasil diblokir!');
+    }
+
+    public function handleUnblock(User $user){
+        $user->update([
+            'status' => 1
+        ]);
+
+        return back()->with('success', 'User berhasil diaktifkan kembali!');
+    }
 }

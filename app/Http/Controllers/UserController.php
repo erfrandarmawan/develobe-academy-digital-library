@@ -36,4 +36,12 @@ class UserController extends Controller
 
         return back()->with('success', 'User berhasil diaktifkan kembali!');
     }
+
+    public function showProfileForm(){
+        return view('panel.profile.index');
+    }
+
+    public function handleUpdateProfile(){
+
+    }
 }

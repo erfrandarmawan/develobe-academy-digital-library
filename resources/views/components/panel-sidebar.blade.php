@@ -30,8 +30,8 @@
       </a>
     </li>
     <li class="flex">
-      <a href="/panel/settings"
-        class="{{ request()->path() === 'panel/settings' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
+      <a href="/panel/profile"
+        class="{{ request()->path() === 'panel/profile' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Pengaturan Data'">
         Pengaturan Data
       </a>

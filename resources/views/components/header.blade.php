@@ -93,7 +93,7 @@
         </a>
       </li>
       <li>
-        <a href="/panel/settings"
+        <a href="/panel/profile"
           class="hover:text-primary duration-200"
           title="Klik untuk membuka halaman 'Pengaturan Data'">
           Pengaturan Data

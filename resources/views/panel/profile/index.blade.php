@@ -43,28 +43,55 @@
             </a>
           </div>
 
-          <form class="w-full lg:w-1/2 flex flex-col gap-4">
-            <div class="text-sm lg:text-base w-full flex flex-col gap-1 mt-4">
-              <label for="name-field"
-                class="text-base">
-                Nama Lengkap
-              </label>
-              <input id="name-field"
-                type="text"
-                class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
-                placeholder="Nama Lengkap Anda"
-                required/>
+          @if ($errors->any())
+            <div class="p-3 bg-red-100 border text-red-700 rounded-md text-sm mt-4">
+              <ul class="list-disc ps-4">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
             </div>
+          @endif
 
-            <div class="text-sm lg:text-base w-full flex flex-col gap-1">
+          @if (session('success'))
+            <div class="p-3 bg-green-100 border text-green-700 rounded-md text-sm mt-4">
+              {{ session('success') }}
+            </div>
+          @endif
+
+          <form class="w-full lg:w-1/2 flex flex-col gap-4"
+            action="{{ route('profile.update') }}"  
+            method="POST"
+            enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <div class="text-sm lg:text-base w-full flex flex-col gap-1 mt-4">
               <label for="email-field"
                 class="text-base">
                 Email
               </label>
               <input id="email-field"
+                name="email"
                 type="email"
-                class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
+                class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30 read-only:bg-gray-200"
                 placeholder="Email Anda"
+                value="{{ old('email', auth()->user()->email) }}"
+                readonly
+                required/>
+            </div>
+
+            <div class="text-sm lg:text-base w-full flex flex-col gap-1">
+              <label for="name-field"
+                class="text-base">
+                Nama Lengkap
+              </label>
+              <input id="name-field"
+                name="name"
+                type="text"
+                class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
+                placeholder="Nama Lengkap Anda"
+                value="{{ old('name', auth()->user()->name) }}"
                 required/>
             </div>
 
@@ -78,8 +105,12 @@
                 type="file"
                 accept="image/*"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
-                placeholder="Foto Avatar Anda"
-                required/>
+                placeholder="Foto Avatar Anda"/>
+
+              @if (auth()->user()->avatar)
+                <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
+                  class="w-20 h-20 rounded-full mt-2">
+              @endif
             </div>
 
             <button type="submit" 

@@ -33,7 +33,7 @@
         <main class="w-full h-full bg-white overflow-y-scroll rounded-lg drop-shadow-lg flex flex-col p-3 lg:p-5">
           <div class="flex flex-row">
             <h1 class="font-bold text-base lg:text-2xl">
-              Tambah Karya
+              {{ $book ? 'Ubah Karya' : 'Tambah Karya' }}
             </h1>
 
             <a href="/panel"
@@ -43,28 +43,43 @@
             </a>
           </div>
 
-          <form class="w-full lg:w-1/2 flex flex-col gap-4">
+          @if ($errors->any())
+            <div class="p-3 bg-red-100 border text-red-700 rounded-md text-sm mt-4">
+              <ul class="list-disc ps-4">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
+          @if (session('success'))
+            <div class="p-3 bg-green-100 border text-green-700 rounded-md text-sm mt-4">
+              {{ session('success') }}
+            </div>
+          @endif
+
+          <form class="w-full lg:w-1/2 flex flex-col gap-4"
+            method="POST"
+            enctype="multipart/form-data"
+            action="{{ $book ? route('books.update', $book->id) : route('books.create') }}">
+            @csrf
+            
+            @if ($book)
+              @method('PUT')
+            @endif
+
             <div class="text-sm lg:text-base w-full flex flex-col gap-1 mt-4">
               <label for="title-field"
                 class="text-base">
                 Judul Karya
               </label>
               <input id="title-field"
+                name="title"
                 type="text"
+                value="{{ old('title', $book->title ?? '') }}"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 placeholder="Judul Karya Anda"
-                required/>
-            </div>
-
-            <div class="text-sm lg:text-base w-full flex flex-col gap-1">
-              <label for="slug-field"
-                class="text-base">
-                URL Karya
-              </label>
-              <input id="slug-field"
-                type="text"
-                class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
-                placeholder="URL Karya Anda"
                 required/>
             </div>
 
@@ -75,9 +90,10 @@
               </label>
               <textarea id="description-field"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
+                name="description"
                 rows="5"
                 placeholder="Deskripsi Karya Anda"
-                required></textarea>
+                required>{{ old('description', $book->description ?? '') }}</textarea>
             </div>
 
             <div class="text-sm lg:text-base w-full flex flex-col gap-1">
@@ -86,11 +102,17 @@
                 Kategori Karya
               </label>
               <select id="category-field"
+                name="category_id"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 required>
                 <option disabled selected>Pilih Kategori</option>
-                <option>Kategori A</option>
-                <option>Kategori B</option>
+                
+                @foreach ($categories as $category)
+                  <option value="{{ $category->id }}"
+                    @selected(old('category_id', $book->category_id ?? '') == $category->id)>
+                    {{ $category->title }}
+                  </option>
+                @endforeach
               </select>
             </div>
 
@@ -101,11 +123,17 @@
                 Foto Karya (Max 2 MB)
               </label>
               <input id="image-field"
+                name="image"
                 type="file"
                 accept="image/*"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 placeholder="Foto Karya Anda"
                 required/>
+
+              @if ($book && $book->image_path)
+                <img src="{{ asset('storage/' . $book->image_path) }}"
+                  class="w-32 rounded-md mt-2" />
+              @endif
             </div>
 
             <div class="text-sm lg:text-base w-full flex flex-col gap-1">
@@ -114,16 +142,25 @@
                 File PDF (Max 10 MB)
               </label>
               <input id="file-field"
+                name="file"
                 type="file"
                 accept="application/pdf"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 placeholder="File PDF Karya Anda"
                 required/>
+              
+              @if ($book && $book->file_path)
+                <a href="{{ asset('storage/' . $book->file_path) }}"
+                  target="_blank"
+                  class="text-primary underline mt-2 block">
+                  Lihat File PDF
+                </a>
+              @endif
             </div>
 
             <button type="submit" 
               class="w-fit border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base">
-              Kirim Karya
+              {{ $book ? 'Update Karya' : 'Kirim Karya' }}
             </a>
           </form>
         </main>

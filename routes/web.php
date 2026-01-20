@@ -40,19 +40,21 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function() {
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'handleRegister']);
 
-    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword']);
-    Route::post('/forgot-password', [AuthController::class, 'handleForgotPassword']);
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
+    Route::post('/forgot-password', [AuthController::class, 'handleForgotPassword'])->name('password.email');
 
     Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
     Route::post('/reset-password', [AuthController::class, 'handleResetPassword'])->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/panel', [BookController::class, 'index']);
+    Route::get('/panel', [BookController::class, 'index'])->name('books.index');
 
-    Route::get('/panel/book/form', function () {
-        return view('panel.books.form');
-    });
+    Route::get('/panel/book/create', [BookController::class, 'showCreateForm'])->name('books.show.create');
+    Route::post('/panel/book', [BookController::class, 'handleCreate'])->name('books.create');
+    
+    Route::get('/panel/book/{book}/edit', [BookController::class, 'showUpdateForm'])->name('books.show.update');
+    Route::post('/panel/book/{book}', [BookController::class, 'handleUpdate'])->name('books.update');
 
     Route::get('/panel/book/detail', function () {
         return view('panel.books.detail');

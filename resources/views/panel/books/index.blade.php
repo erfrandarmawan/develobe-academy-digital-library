@@ -36,7 +36,7 @@
               Semua Karya
             </h1>
 
-            <a href="/panel/book/form"
+            <a href="{{ route('books.show.create') }}"
               class="ms-auto border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base"
               title="Klik untuk menambah karya">
               Tambah Data
@@ -88,7 +88,7 @@
                     {{ $book->slug }}
                   </td>
                   <td class="px-3 py-2">
-                    {{ $book->category->name }}
+                    {{ $book->category->title }}
                   </td>
                   <td class="px-3 py-2">
                     <span @class([

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckUserStatus;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::get('/', function () {
@@ -36,7 +37,7 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function() {
     Route::post('/reset-password', [AuthController::class, 'handleResetPassword'])->name('password.update');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', CheckUserStatus::class])->group(function () {
     Route::get('/panel', [BookController::class, 'index'])->name('books.index');
 
     Route::get('/panel/book/create', [BookController::class, 'showCreateForm'])->name('books.show.create');

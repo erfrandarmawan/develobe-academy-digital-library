@@ -43,16 +43,39 @@
             </a>
           </div>
 
-          <form class="w-full lg:w-1/2 flex flex-col gap-4">
+          @if ($errors->any())
+            <div class="p-3 bg-red-100 border text-red-700 rounded-md text-sm mt-4">
+              <ul class="list-disc ps-4">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
+          @if (session('success'))
+            <div class="p-3 bg-green-100 border text-green-700 rounded-md text-sm mt-4">
+              {{ session('success') }}
+            </div>
+          @endif
+
+          <form class="w-full lg:w-1/2 flex flex-col gap-4"
+            method="POST"
+            action="{{ route('change-password.update') }}">
+            @csrf
+            @method('PUT')
+
             <div class="text-sm lg:text-base w-full flex flex-col gap-1 mt-4">
               <label for="old-password-field"
                 class="text-base">
                 Kata Sandi Lama
               </label>
               <input id="old-password-field"
+                name="old_password"
                 type="password"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 placeholder="Kata Sandi Lama Anda"
+                minlength="6"
                 required/>
             </div>
 
@@ -62,9 +85,11 @@
                 Kata Sandi Baru
               </label>
               <input id="new-password-field"
+                name="new_password"
                 type="password"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 placeholder="Kata Sandi Baru Anda"
+                minlength="6"
                 required/>
             </div>
 
@@ -74,14 +99,16 @@
                 Konfirmasi Kata Sandi
               </label>
               <input id="confirmation-password-field"
+                name="new_password_confirmation"
                 type="password"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 placeholder="Konfirmasi Kata Sandi"
+                minlength="6"
                 required/>
             </div>
 
             <button type="submit" 
-              class="w-fit border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base">
+              class="w-fit border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base cursor-pointer">
               Ubah Data
             </a>
           </form>

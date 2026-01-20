@@ -59,9 +59,8 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
     Route::get('/panel/profile', [UserController::class, 'showProfileForm'])->name('profile.show');
     Route::put('/panel/profile', [UserController::class, 'handleUpdateProfile'])->name('profile.update');
 
-    Route::get('/panel/change-password', function () {
-        return view('panel.profile.change-password');
-    });
+    Route::get('/panel/change-password', [UserController::class, 'showChangePasswordForm'])->name('change-password.show');
+    Route::put('/panel/change-password', [UserController::class, 'handleChangePassword'])->name('change-password.update');
 
     Route::post('/logout', [AuthController::class, 'handleLogout'])->name('logout');
 });

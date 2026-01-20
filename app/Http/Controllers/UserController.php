@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -42,15 +43,19 @@ class UserController extends Controller
         return view('panel.profile.index');
     }
 
-    public function handleUpdateProfile(Request $request){
-        // Get current user data
-        $user = auth()->user();
+    public function showChangePasswordForm(){
+        return view('panel.profile.change-password');
+    }
 
+    public function handleUpdateProfile(Request $request){
         // Validate input
         $data = $request->validate([
             'name' => ['required', 'min:3'],
             'image' => ['nullable', 'image', 'max:2048'],
         ]);
+
+        // Get current user data
+        $user = auth()->user();
 
         // Update data
         $user->name = $data['name'];
@@ -71,5 +76,30 @@ class UserController extends Controller
 
         // Return response
         return back()->with('success', 'Profil berhasil diperbarui!');
+    }
+
+    public function handleChangePassword(Request $request){
+        // Validate input
+        $request->validate([
+            'old_password' => ['required'],
+            'new_password' => ['required', 'min:6', 'confirmed'],
+        ]);
+
+        // Get current user data
+        $user = auth()->user();
+
+        // Check old password
+        if (! Hash::check($request->old_password, $user->password)) {
+            return back()->withErrors([
+                'old_password' => 'Password lama tidak sesuai!'
+            ]);
+        }
+
+        // Update new password
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        // Return response
+        return back()->with('success', 'Password berhasil diperbarui!');
     }
 }

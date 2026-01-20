@@ -29,10 +29,12 @@
       </a>
     </li>
     <li>
-      @if (request()->is('panel*'))
-      <span class="font-bold text-xl">
-        Hello, Erfran Darmawan
-      </span>
+      @if (auth()->user())
+      <a href="/panel"
+        class="font-bold text-xl hover:text-primary duration-200"
+        title="Klik untuk masuk ke portal pengguna">
+        Hello, {{ auth()->user()->name }}
+      </a>
 
       @elseif (request()->path() === 'login')
       <a href="/register"
@@ -64,10 +66,12 @@
   class="hidden w-full h-full fixed top-0 left-0 bg-white z-50 p-5">
   <div class="flex flex-col">
     <div class="flex flex-row items-center">
-      @if (request()->is('panel*'))
-      <span class="font-bold text-xl">
-        Hello, Erfran Darmawan
-      </span>
+      @if (auth()->user())
+      <a href="/panel"
+        class="hover:text-primary duration-200 font-bold text-xl"
+        title="Klik untuk masuk ke portal pengguna">
+        Hello, {{ auth()->user()->name }}
+      </a>
       @endif
 
       <button class="ms-auto w-10 h-10 p-1"
@@ -119,7 +123,10 @@
     </ul>
     
     @else
-    <ul class="flex flex-col gap-5 text-base text-black font-medium">
+    <ul @class([
+        'flex flex-col gap-5 text-base text-black font-medium',
+        'mt-5' => auth()->user(),
+      ])>
       <li>
         <a href="/"
           class="hover:text-primary duration-200"

@@ -48,15 +48,15 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function() {
 
 Route::middleware('auth')->group(function () {
     Route::get('/panel', function () {
-        return view('panel.products.index');
+        return view('panel.books.index');
     });
 
-    Route::get('/panel/product/form', function () {
-        return view('panel.products.form');
+    Route::get('/panel/book/form', function () {
+        return view('panel.books.form');
     });
 
-    Route::get('/panel/product/detail', function () {
-        return view('panel.products.detail');
+    Route::get('/panel/book/detail', function () {
+        return view('panel.books.detail');
     });
 
     Route::get('/panel/users', function () {

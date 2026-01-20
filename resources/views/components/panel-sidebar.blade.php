@@ -44,11 +44,14 @@
       </a>
     </li>
     <li class="flex">
-      <a href="/panel/logout"
-        class="hover:bg-gray-500/5 hover:text-primary rounded-md w-full px-2.5 py-2 duration-200"
-        title="Klik untuk keluar dari portal pengguna">
-        Keluar
-      </a>
+      <form action="/logout" method="POST" class="w-full">
+        @csrf
+        <button type="submit"
+          class="hover:bg-gray-500/5 hover:text-primary rounded-md w-full px-2.5 py-2 duration-200 text-start cursor-pointer"
+          title="Klik untuk keluar dari portal pengguna">
+          Keluar
+        </button>
+      </form>
     </li>
   </ul>
   <!-- Navigation: End -->

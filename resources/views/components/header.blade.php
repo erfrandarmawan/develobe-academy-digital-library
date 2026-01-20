@@ -107,11 +107,14 @@
         </a>
       </li>
       <li>
-        <a href="/panel/logout"
-          class="bg-red-500 text-white rounded-lg hover:bg-white hover:text-red-500 duration-200 py-2 px-4"
-          title="Klik untuk keluar dari portal pengguna">
-          Keluar
-        </a>
+        <form action="/logout" method="POST" class="w-full">
+          @csrf
+          <button type="submit"
+            class="bg-red-500 text-white rounded-lg hover:bg-white hover:text-red-500 duration-200 py-2 px-4 cursor-pointer"
+            title="Klik untuk keluar dari portal pengguna">
+            Keluar
+          </button>
+        </form>
       </li>
     </ul>
     

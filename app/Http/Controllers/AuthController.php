@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
@@ -19,6 +20,13 @@ class AuthController extends Controller
 
     public function showForgotPassword(){
         return view('auth.forgot-password');
+    }
+
+    public function showResetPassword(Request $request, $token){
+        return view('auth.reset-password', [
+            'token' => $token,
+            'email' => $request->email,
+        ]);
     }
 
     public function handleLogin(Request $request){
@@ -67,6 +75,47 @@ class AuthController extends Controller
 
         // Redirect to panel user
         return redirect('/panel');
+    }
+
+    public function handleForgotPassword(Request $request){
+        $request->validate([
+            'email' => ['required', 'email'],
+        ]);
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        if ($status === Password::RESET_LINK_SENT) {
+            return back()->with('status', __($status));
+        }
+
+        return back()->withErrors([
+            'email' => __($status),
+        ]);
+    }
+
+    public function handleResetPassword(Request $request){
+        $request->validate([
+            'token' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:6'],
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user) use ($request) {
+                $user->forceFill([
+                    'password' => Hash::make($request->password)
+                ])->save();
+            }
+        );
+
+        if ($status == Password::PASSWORD_RESET) {
+            return redirect('/login')->with('status', __($status));
+        }
+
+        return back()->withErrors(['email' => __($status)]);
     }
 
     public function handleLogout(Request $request){

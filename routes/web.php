@@ -33,13 +33,17 @@ Route::get('/forgot-password', function () {
 });
 
 Route::middleware(RedirectIfAuthenticated::class)->group(function() {
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::get('/login', [AuthController::class, 'showLogin']);
     Route::post('/login', [AuthController::class, 'handleLogin']);
 
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    Route::get('/register', [AuthController::class, 'showRegister']);
     Route::post('/register', [AuthController::class, 'handleRegister']);
 
-    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('forgot-password');
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword']);
+    Route::post('/forgot-password', [AuthController::class, 'handleForgotPassword']);
+
+    Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
+    Route::post('/reset-password', [AuthController::class, 'handleResetPassword'])->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {

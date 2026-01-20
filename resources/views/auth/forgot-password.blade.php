@@ -34,10 +34,30 @@
         <!-- Background: End -->
 
         <!-- Form: Start -->
-        <form class="w-11/12 lg:w-4/12 bg-white px-5 py-10 lg:px-5 lg:py-20 flex flex-col items-center justify-center gap-5 z-1 rounded-3xl">
+        <form method="POST"
+          class="w-11/12 lg:w-4/12 bg-white px-5 py-10 lg:px-5 lg:py-20 flex flex-col items-center justify-center gap-5 z-1 rounded-3xl"
+          action="/forgot-password">
+          @csrf
+
           <h1 class="font-bold text-xl">
             DIGILIB.IO
           </h1>
+
+          @if ($errors->any())
+            <div class="bg-red-100 text-red-700 p-3 rounded">
+              <ul class="list-disc list-inside space-y-1">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
+          @if (session('status'))
+            <div class="p-3 bg-green-100 text-green-800 text-sm rounded mb-3">
+              {{ session('status') }}
+            </div>
+          @endif
 
           <div class="text-sm lg:text-base w-full flex flex-col gap-1 lg:mt-5">
             <label for="email-field"
@@ -45,9 +65,11 @@
               Email
             </label>
             <input id="email-field"
+              name="email"
               type="email"
               class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
-              placeholder="Email Anda"/>
+              placeholder="Email Anda"
+              required/>
           </div>
 
           <button type="submit"

@@ -59,53 +59,73 @@
               </thead>
 
               <tbody>
-                @for ($i = 0; $i < 20; $i++)
+                @forelse ($books as $book)
                 <tr class="hover:bg-gray-50 duration-150">
                   <td class="px-3 py-2 flex flex-row gap-2">
+                    @if ($book->status === 'waiting approval')
                     <a href="#" 
                       class="border border-yellow-500 bg-yellow-500 text-white rounded-md hover:bg-white hover:text-yellow-500 duration-200 py-1 px-2">
                       Review
                     </a>
+                    @endif
+
+                    @if ($book->status === 'waiting approval' || $book->status === 'rejected')
                     <a href="#" 
                       class="border border-primary bg-primary text-white rounded-md hover:bg-white hover:text-primary duration-200 py-1 px-2">
                       Edit Data
                     </a>
+                    @endif
+
                     <a href="#" 
                       class="border border-red-500 bg-red-500 text-white rounded-md hover:bg-white hover:text-red-500 duration-200 py-1 px-2">
                       Hapus Data
                     </a>
                   </td>
                   <td class="px-3 py-2">
-                    Judul Buku
+                    {{ $book->title }}
                   </td>
                   <td class="px-3 py-2">
-                    test-judul
+                    {{ $book->slug }}
                   </td>
                   <td class="px-3 py-2">
-                    Edukasi
+                    {{ $book->category->name }}
                   </td>
                   <td class="px-3 py-2">
                     <span @class([
                       'px-2 py-1 rounded text-xs font-semibold uppercase',
-                      'bg-green-100 text-green-700'
+                      'bg-yellow-100 text-yellow-700' => $book->status === 'waiting approval',
+                      'bg-green-100 text-green-700' => $book->status === 'approved',
+                      'bg-red-100 text-red-700' => $book->status === 'rejected',
                     ])>
-                      Published
+                      {{ $book->status }}
                     </span>
                   </td>
                   <td class="px-3 py-2">
-                    18 Jan 2026 - 16:50 WIB
+                    {{ $book->approved_at ? $book->approved_at->format('d M Y - H:i') . ' WIB' : '-' }}
                   </td>
                   <td class="px-3 py-2">
-                    18 Jan 2026 - 13:50 WIB
+                    {{ $book->created_at->format('d M Y - H:i') }} WIB
                   </td>
                   <td class="px-3 py-2">
-                    ADMIN
+                    {{ $book->user->name }}
                   </td>
                 </tr>
-                @endfor
+                @empty
+                <tr>
+                  <td colspan="8" class="text-center text-gray-500 py-4">
+                    Tidak ada data buku
+                  </td>
+                </tr>
+                @endforelse
               </tbody>
             </table>
           </div>
+
+          @if ($books->hasPages())
+            <div class="mt-4 flex justify-center">
+              {{ $books->links() }}
+            </div>
+          @endif
         </main>
         <!-- Panel Content: End -->
       </section>

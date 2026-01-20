@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::get('/', function () {
@@ -33,10 +34,10 @@ Route::get('/forgot-password', function () {
 });
 
 Route::middleware(RedirectIfAuthenticated::class)->group(function() {
-    Route::get('/login', [AuthController::class, 'showLogin']);
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'handleLogin']);
 
-    Route::get('/register', [AuthController::class, 'showRegister']);
+    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'handleRegister']);
 
     Route::get('/forgot-password', [AuthController::class, 'showForgotPassword']);
@@ -47,9 +48,7 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function() {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/panel', function () {
-        return view('panel.books.index');
-    });
+    Route::get('/panel', [BookController::class, 'index']);
 
     Route::get('/panel/book/form', function () {
         return view('panel.books.form');

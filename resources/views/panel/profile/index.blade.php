@@ -72,7 +72,6 @@
                 Email
               </label>
               <input id="email-field"
-                name="email"
                 type="email"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30 read-only:bg-gray-200"
                 placeholder="Email Anda"
@@ -102,19 +101,15 @@
                 Foto Avatar (Max 2 MB)
               </label>
               <input id="image-field"
+                name="image"
                 type="file"
                 accept="image/*"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 placeholder="Foto Avatar Anda"/>
-
-              @if (auth()->user()->avatar)
-                <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
-                  class="w-20 h-20 rounded-full mt-2">
-              @endif
             </div>
 
             <button type="submit" 
-              class="w-fit border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base">
+              class="w-fit border border-primary bg-primary text-white rounded-md lg:rounded-lg hover:bg-white hover:text-primary duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base cursor-pointer">
               Ubah Data
             </a>
           </form>

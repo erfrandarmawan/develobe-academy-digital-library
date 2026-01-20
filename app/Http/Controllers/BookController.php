@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
     public function index(){
-        $user = Auth::user();
+        $user = auth()->user();
 
         // Admin can see all books
         if ($user->role === 'admin') {
@@ -70,7 +69,7 @@ class BookController extends Controller
         $book->slug = $slug;
         $book->description = $request->description;
         $book->category_id = $request->category_id;
-        $book->user_id = Auth::id();
+        $book->user_id = auth()->id();
         $book->status = 'waiting approval';
 
         // Upload image

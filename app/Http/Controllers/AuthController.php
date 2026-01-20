@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
@@ -40,7 +39,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         // Check user
-        if (Auth::attempt($credentials, $request->remember)) {
+        if (auth()->attempt($credentials, $request->remember)) {
             // Generate session
             $request->session()->regenerate();
 
@@ -71,7 +70,7 @@ class AuthController extends Controller
         ]);
 
         // Login automatically after register
-        Auth::login($user);
+        auth()->login($user);
 
         // Redirect to panel user
         return redirect('/panel');
@@ -120,7 +119,7 @@ class AuthController extends Controller
 
     public function handleLogout(Request $request){
         // Logout function
-        Auth::logout();
+        auth()->logout();
 
         // Clear session
         $request->session()->invalidate();

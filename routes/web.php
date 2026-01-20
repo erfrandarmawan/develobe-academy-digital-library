@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::get('/', function () {
@@ -49,9 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/panel/book/{book}/approval', [BookController::class, 'showApproval'])->name('books.show.approval');
     Route::put('/panel/book/{book}/approval', [BookController::class, 'handleApproval'])->name('books.approval');
 
-    Route::get('/panel/users', function () {
-        return view('panel.users.index');
-    });
+
+    Route::get('/panel/users', [UserController::class, 'index'])->name('users.index');
 
     Route::get('/panel/settings', function () {
         return view('panel.settings.index');

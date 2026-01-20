@@ -50,37 +50,47 @@
               </thead>
 
               <tbody>
-                @for ($i = 0; $i < 20; $i++)
+                @forelse ($users as $user)
                 <tr class="hover:bg-gray-50 duration-150">
                   <td class="px-3 py-2 flex flex-row gap-2">
-                    <a href="#" 
-                      class="border border-green-500 bg-green-500 text-white rounded-md hover:bg-white hover:text-green-500 duration-200 py-1 px-2">
-                      Unblock User
-                    </a>
-                    <a href="#" 
-                      class="border border-red-500 bg-red-500 text-white rounded-md hover:bg-white hover:text-red-500 duration-200 py-1 px-2">
-                      Block User
-                    </a>
+                    @if ($user->status)
+                      <a href="#" 
+                        class="border border-red-500 bg-red-500 text-white rounded-md hover:bg-white hover:text-red-500 duration-200 py-1 px-2">
+                        Block User
+                      </a>
+                    @else
+                      <a href="#" 
+                        class="border border-green-500 bg-green-500 text-white rounded-md hover:bg-white hover:text-green-500 duration-200 py-1 px-2">
+                        Unblock User
+                      </a>
+                    @endif
                   </td>
                   <td class="px-3 py-2">
-                    Erfran Darmawan
+                    {{ $user->name }}
                   </td>
                   <td class="px-3 py-2">
-                    erfrandarmawan@develobe.id
+                    {{ $user->email }}
                   </td>
                   <td class="px-3 py-2">
                     <span @class([
                       'px-2 py-1 rounded text-xs font-semibold uppercase',
-                      'bg-green-100 text-green-700'
+                      'bg-green-100 text-green-700' => $user->status == 1,
+                      'bg-red-100 text-red-700' => $user->status == 0,
                     ])>
-                      ACTIVE
+                      {{ $user->status ? 'ACTIVE' : 'INACTIVE' }}
                     </span>
                   </td>
                   <td class="px-3 py-2">
-                    18 Jan 2026 - 16:50 WIB
+                    {{ $user->created_at->format('d M Y - H:i') }} WIB
                   </td>
                 </tr>
-                @endfor
+                @empty
+                <tr>
+                  <td colspan="8" class="text-center text-gray-500 py-4">
+                    Tidak ada data user
+                  </td>
+                </tr>
+                @endforelse
               </tbody>
             </table>
           </div>

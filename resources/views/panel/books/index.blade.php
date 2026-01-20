@@ -70,7 +70,7 @@
                     @endif
 
                     @if ($book->status === 'waiting approval' || $book->status === 'rejected')
-                    <a href="#" 
+                    <a href="{{ route('books.show.update', $book) }}" 
                       class="border border-primary bg-primary text-white rounded-md hover:bg-white hover:text-primary duration-200 py-1 px-2">
                       Edit Data
                     </a>

@@ -128,7 +128,7 @@
                 accept="image/*"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 placeholder="Foto Karya Anda"
-                required/>
+                @if(!$book) required @endif/>
 
               @if ($book && $book->image_path)
                 <img src="{{ asset('storage/' . $book->image_path) }}"
@@ -147,7 +147,7 @@
                 accept="application/pdf"
                 class="w-full outline-none p-3 rounded-lg border placeholder:text-black/30"
                 placeholder="File PDF Karya Anda"
-                required/>
+                @if(!$book) required @endif/>
               
               @if ($book && $book->file_path)
                 <a href="{{ asset('storage/' . $book->file_path) }}"

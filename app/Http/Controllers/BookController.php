@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -104,10 +105,12 @@ class BookController extends Controller
         $book->status = 'waiting approval'; // reset approval
 
         if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($book->image_path);
             $book->image_path = $request->file('image')->store('books/images', 'public');
         }
 
         if ($request->hasFile('file')) {
+            Storage::disk('public')->delete($book->file_path);
             $book->file_path = $request->file('file')->store('books/files', 'public');
         }
 

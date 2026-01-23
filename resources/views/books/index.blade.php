@@ -36,10 +36,20 @@
       <section id="book-section"
         class="w-full flex flex-col pt-5 pb-15 px-5 lg:px-10">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
-          @for ($i = 0; $i < 10; $i++)
-          <x-book-item></x-book-item>
-          @endfor
+          @forelse ($books as $book)
+            <x-book-item :book="$book"></x-book-item>
+          @empty
+            <div class="text-center py-4">
+              Tidak ada data buku
+            </div>
+          @endforelse
         </div>
+
+        @if ($books->hasPages())
+          <div class="mt-4 flex justify-center">
+            {{ $books->links() }}
+          </div>
+        @endif
       </section>
       <!-- Book Section: End -->
 

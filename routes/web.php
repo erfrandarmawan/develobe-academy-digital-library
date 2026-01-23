@@ -8,13 +8,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckUserStatus;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
-Route::get('/', [PageController::class, 'index'])->name('home');
-
-Route::get('/books', function () {
-    return view('books.index');
-});
-
-Route::get('/categories', [PageController::class, 'showCategories'])->name('categories');
+Route::get('/', [PageController::class, 'index'])->name('frontpage.home');
+Route::get('/categories', [PageController::class, 'showCategories'])->name('frontpage.categories');
+Route::get('/books', [PageController::class, 'showBooks'])->name('frontpage.books');
 
 Route::get('/books/{slug}', function (string $slug) {
     return view('books.details', ['slug' => $slug]);

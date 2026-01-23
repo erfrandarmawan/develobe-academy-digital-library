@@ -25,4 +25,13 @@ class PageController extends Controller
 
         return view('categories.index', compact('categories'));
     }
+
+    public function showBooks(){
+        $books = Book::with(['user', 'category'])
+            ->where('status', 'approved')
+            ->orderBy('approved_at', 'desc')
+            ->paginate(8);
+
+        return view('books.index', compact('books'));
+    }
 }

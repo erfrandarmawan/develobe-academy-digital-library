@@ -14,9 +14,7 @@ Route::get('/books', function () {
     return view('books.index');
 });
 
-Route::get('/categories', function () {
-    return view('categories.index');
-});
+Route::get('/categories', [PageController::class, 'showCategories'])->name('categories');
 
 Route::get('/books/{slug}', function (string $slug) {
     return view('books.details', ['slug' => $slug]);

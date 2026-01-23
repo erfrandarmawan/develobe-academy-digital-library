@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -16,5 +17,12 @@ class PageController extends Controller
             ->get();
 
         return view('index', compact('books'));
+    }
+
+    public function showCategories(){
+        $categories = Category::orderBy('title', 'asc')
+            ->get();
+
+        return view('categories.index', compact('categories'));
     }
 }

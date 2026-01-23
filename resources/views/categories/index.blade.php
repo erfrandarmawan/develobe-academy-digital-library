@@ -31,9 +31,9 @@
         </h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 mt-5">
-          @for ($i = 0; $i < 5; $i++)
-          <x-category-item></x-category-item>
-          @endfor
+          @foreach ($categories as $category)
+          <x-category-item :category="$category"></x-category-item>
+          @endforeach
         </div>
       </section>
       <!-- Category Section: End -->

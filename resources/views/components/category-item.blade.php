@@ -1,4 +1,5 @@
-<a href="/categories"
+@props(['category'])
+<a href="/books?category_id={{ $category->id }}"
   title="Klik untuk melihat detail kategori"
   class="group">
   <div class="w-full h-32 lg:h-48 flex flex-col items-center justify-center rounded-lg lg:rounded-2xl border relative overflow-hidden">
@@ -16,7 +17,7 @@
 
     <!-- Title: Start -->
     <span class="uppercase text-white font-bold text-center text-2xl lg:text-4xl z-2 group-hover:text-primary duration-200">
-      Category Title
+      {{ $category->title }}
     </span>
     <!-- Title: End -->
   </div>

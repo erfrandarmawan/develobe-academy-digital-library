@@ -3,13 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckUserStatus;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [PageController::class, 'index'])->name('home');
 
 Route::get('/books', function () {
     return view('books.index');

@@ -62,9 +62,9 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 mt-4">
-          @for ($i = 0; $i < 8; $i++)
-          <x-book-item></x-book-item>
-          @endfor
+          @foreach ($books as $book)
+            <x-book-item :book="$book"></x-book-item>
+          @endforeach
         </div>
 
         <a href="/books"

@@ -23,12 +23,33 @@
       <!-- Header Component: End -->
 
       <!-- Search Filter: Start -->
-      <form class="w-2/3 lg:w-75 flex flex-row rounded-lg border p-2 gap-2 mt-5 lg:mt-10 ms-5 lg:ms-10">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m17 17l4 4m-2-10a8 8 0 1 0-16 0a8 8 0 0 0 16 0"/></svg>
+      <form method="GET"
+        action="{{ route('frontpage.books') }}"
+        class="flex flex-row items-center gap-5 mt-5 lg:mt-10 ms-5 lg:ms-10">
+        <div class="w-2/3 lg:w-75 flex flex-row rounded-lg border p-2 gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m17 17l4 4m-2-10a8 8 0 1 0-16 0a8 8 0 0 0 16 0"/></svg>
 
-        <input type="search"
-          placeholder="Search book here..."
-          class="w-full text-base font-light outline-none"/>
+          <input type="search"
+            name="keyword"
+            placeholder="Search book here..."
+            class="w-full text-base font-light outline-none"
+            value="{{ request('keyword') }}"/>
+        </div>
+
+        <select name="category_id"
+          class="w-fit outline-none p-2 rounded-lg border">
+          <option value="">All Categories</option>
+          @foreach ($categories as $category)
+            <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+              {{ $category->title }}
+            </option>
+          @endforeach
+        </select>
+
+        <button type="submit"
+          class="border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4 cursor-pointer">
+          Cari
+        </button>
       </form>
       <!-- Search Filter: End -->
 
@@ -39,7 +60,7 @@
           @forelse ($books as $book)
             <x-book-item :book="$book"></x-book-item>
           @empty
-            <div class="text-center py-4">
+            <div class="text-center py-4 col-span-4">
               Tidak ada data buku
             </div>
           @endforelse

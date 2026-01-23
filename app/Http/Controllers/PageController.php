@@ -26,12 +26,31 @@ class PageController extends Controller
         return view('categories.index', compact('categories'));
     }
 
-    public function showBooks(){
+    public function showBooks(Request $request){
+        // Get books
         $books = Book::with(['user', 'category'])
             ->where('status', 'approved')
-            ->orderBy('approved_at', 'desc')
-            ->paginate(8);
 
-        return view('books.index', compact('books'));
+            // Filter by keyword
+            ->when($request->keyword, function ($query, $keyword) {
+                $query->where(function($q) use ($keyword) {
+                    $q->where('title', 'like', "%{$keyword}%")
+                    ->orWhere('description', 'like', "%{$keyword}%");
+                });
+            })
+
+            // Filter by category
+            ->when($request->category_id, function ($query, $categoryId) {
+                $query->where('category_id', $categoryId);
+            })
+
+            ->orderBy('approved_at', 'desc')
+            ->paginate(8)
+            ->withQueryString();
+
+        // Get categories
+        $categories = Category::orderBy('title')->get();
+
+        return view('books.index', compact('books', 'categories'));
     }
 }

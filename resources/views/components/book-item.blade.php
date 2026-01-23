@@ -1,5 +1,5 @@
 @props(['book'])
-<a href="/books/{{ $book->slug }}"
+<a href="{{ route('frontpage.book.details', $book->slug) }}"
   title="Klik untuk melihat detail buku"
   class="group">
   <div class="w-full flex flex-col rounded-lg border overflow-hidden">

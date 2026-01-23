@@ -11,10 +11,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 Route::get('/', [PageController::class, 'index'])->name('frontpage.home');
 Route::get('/categories', [PageController::class, 'showCategories'])->name('frontpage.categories');
 Route::get('/books', [PageController::class, 'showBooks'])->name('frontpage.books');
-
-Route::get('/books/{slug}', function (string $slug) {
-    return view('books.details', ['slug' => $slug]);
-});
+Route::get('/books/{book:slug}', [PageController::class, 'showBookDetails'])->name('frontpage.book.details');
 
 Route::middleware(RedirectIfAuthenticated::class)->group(function() {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

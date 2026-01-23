@@ -53,4 +53,14 @@ class PageController extends Controller
 
         return view('books.index', compact('books', 'categories'));
     }
+
+    public function showBookDetails(Book $book)
+    {
+        // Only show approved book
+        if ($book->status !== 'approved') {
+            abort(404);
+        }
+
+        return view('books.details', compact('book'));
+    }
 }

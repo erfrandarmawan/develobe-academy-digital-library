@@ -103,7 +103,7 @@
           </button>
 
           <div class="flex flex-row gap-2 text-sm">
-            <a href="/login"
+            <a href="{{ route('login') }}"
               title="Klik untuk masuk ke portal pengguna"
               class="text-black hover:text-primary duration-200">
               Masuk
@@ -111,7 +111,7 @@
             <span>
               |
             </span>
-            <a href="/forgot-password"
+            <a href="{{ route('password.request') }}"
               title="Klik untuk mengubah kata sandi Anda"
               class="text-black hover:text-primary duration-200">
               Lupa Kata Sandi?

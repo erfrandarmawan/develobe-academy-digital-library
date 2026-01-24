@@ -44,21 +44,21 @@
       
       <ul class="mt-1 lg:mt-2 flex flex-col">
         <li>
-          <a href="/"
+          <a href="{{ route('frontpage.home') }}"
             class="hover:text-primary duration-200"
             title="Klik untuk membuka halaman 'Beranda'">
             Beranda
           </a>
         </li>
         <li>
-          <a href="/books"
+          <a href="{{ route('frontpage.books') }}"
             class="hover:text-primary duration-200"
             title="Klik untuk membuka halaman 'Buku'">
             Buku
           </a>
         </li>
         <li>
-          <a href="/categories"
+          <a href="{{ route('frontpage.categories') }}"
             class="hover:text-primary duration-200"
             title="Klik untuk membuka halaman 'Kategori'">
             Kategori

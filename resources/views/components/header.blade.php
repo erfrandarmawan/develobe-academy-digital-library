@@ -8,21 +8,21 @@
   <!-- Navigation Menu (Desktop): Start -->
   <ul class="hidden lg:flex flex-row ms-auto gap-10 items-center text-xl font-medium">
     <li>
-      <a href="/"
+      <a href="{{ route('frontpage.home') }}"
         class="hover:text-primary duration-200"
         title="Klik untuk membuka halaman 'Beranda'">
         Beranda
       </a>
     </li>
     <li>
-      <a href="/books"
+      <a href="{{ route('frontpage.books') }}"
         class="hover:text-primary duration-200"
         title="Klik untuk membuka halaman 'Buku'">
         Buku
       </a>
     </li>
     <li>
-      <a href="/categories"
+      <a href="{{ route('frontpage.categories') }}"
         class="hover:text-primary duration-200"
         title="Klik untuk membuka halaman 'Kategori'">
         Kategori
@@ -30,20 +30,20 @@
     </li>
     <li>
       @if (auth()->user())
-      <a href="/panel"
+      <a href="{{ route('books.index') }}"
         class="font-bold text-xl hover:text-primary duration-200"
         title="Klik untuk masuk ke portal pengguna">
         Hello, {{ auth()->user()->name }}
       </a>
 
       @elseif (request()->path() === 'login')
-      <a href="/register"
+      <a href="{{ route('register') }}"
         class="border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
         title="Klik untuk membuat akun baru">
         Daftar Akun
       </a>
       @else
-      <a href="/login"
+      <a href="{{ route('login') }}"
         class="border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
         title="Klik untuk masuk ke portal pengguna">
         Masuk
@@ -67,7 +67,7 @@
   <div class="flex flex-col">
     <div class="flex flex-row items-center">
       @if (auth()->user())
-      <a href="/panel"
+      <a href="{{ route('books.index') }}"
         class="hover:text-primary duration-200 font-bold text-xl"
         title="Klik untuk masuk ke portal pengguna">
         Hello, {{ auth()->user()->name }}
@@ -83,28 +83,28 @@
     @if (request()->is('panel*'))
     <ul class="mt-5 flex flex-col gap-5 text-base text-black font-medium">
       <li>
-        <a href="/"
+        <a href="{{ route('frontpage.home') }}"
           class="hover:text-primary duration-200"
           title="Klik untuk membuka halaman 'Beranda'">
           Kembali ke Beranda
         </a>
       </li>
       <li>
-        <a href="/panel"
+        <a href="{{ route('books.index') }}"
           class="hover:text-primary duration-200"
           title="Klik untuk membuka halaman 'Semua Karya'">
           Semua Karya
         </a>
       </li>
       <li>
-        <a href="/panel/profile"
+        <a href="{{ route('profile.show') }}"
           class="hover:text-primary duration-200"
           title="Klik untuk membuka halaman 'Pengaturan Data'">
           Pengaturan Data
         </a>
       </li>
       <li>
-        <a href="/panel/change-password"
+        <a href="{{ route('change-password.show') }}"
           class="hover:text-primary duration-200"
           title="Klik untuk membuka halaman 'Pengaturan Kata Sandi'">
           Pengaturan Kata Sandi
@@ -128,28 +128,28 @@
         'mt-5' => auth()->user(),
       ])>
       <li>
-        <a href="/"
+        <a href="{{ route('frontpage.home') }}"
           class="hover:text-primary duration-200"
           title="Klik untuk membuka halaman 'Beranda'">
           Beranda
         </a>
       </li>
       <li>
-        <a href="/books"
+        <a href="{{ route('frontpage.books') }}"
           class="hover:text-primary duration-200"
           title="Klik untuk membuka halaman 'Buku'">
           Buku
         </a>
       </li>
       <li>
-        <a href="/categories"
+        <a href="{{ route('frontpage.categories') }}"
           class="hover:text-primary duration-200"
           title="Klik untuk membuka halaman 'Kategori'">
           Kategori
         </a>
       </li>
       <li>
-        <a href="/login"
+        <a href="{{ route('login') }}"
           class="bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
           title="Klik untuk masuk ke portal pengguna">
           Masuk

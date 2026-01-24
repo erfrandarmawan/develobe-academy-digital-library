@@ -38,7 +38,7 @@
           <p class="text-xs lg:text-xl">
             Perpustakaan digital modern yang dirancang untuk memberikan akses instan ke ribuan buku, jurnal dan sumber belajar - kapan saja, di mana saja
           </p>
-          <a href="/register"
+          <a href="{{ route('register') }}"
             class="font-bold px-4 py-2 text-xs lg:text-xl text-white bg-primary rounded-lg hover:bg-white hover:text-primary duration-200"
             title="Klik untuk melakukan pendaftaran">
             DAFTAR SEKARANG
@@ -54,7 +54,7 @@
           <h2 class="font-bold text-2xl lg:text-4xl">
             Buku Terpopuler
           </h2>
-          <a href="/books"
+          <a href="{{ route('frontpage.books') }}"
             title="Klik untuk melihat lebih banyak buku"
             class="hidden lg:inline hover:text-primary duration-200 ms-auto text-xl">
             Lihat lainnya
@@ -67,7 +67,7 @@
           @endforeach
         </div>
 
-        <a href="/books"
+        <a href="{{ route('frontpage.books') }}"
           title="Klik untuk melihat lebih banyak buku"
           class="inline lg:hidden hover:text-primary duration-200 mt-5 mx-auto text-base">
           Lihat lainnya

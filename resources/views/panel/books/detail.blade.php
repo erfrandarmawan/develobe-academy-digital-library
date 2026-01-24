@@ -36,7 +36,7 @@
               Detail Karya
             </h1>
 
-            <a href="/panel"
+            <a href="{{ route('books.index') }}"
               class="ms-auto border border-yellow-500 bg-yellow-500 text-white rounded-md lg:rounded-lg hover:bg-white hover:text-yellow-500 duration-200 py-1 lg:py-2 px-2 lg:px-4 font-bold text-xs lg:text-base"
               title="Klik untuk kembali ke halaman sebelumnya">
               Kembali

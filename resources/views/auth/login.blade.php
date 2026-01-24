@@ -83,7 +83,7 @@
           </button>
 
           <div class="flex flex-row gap-2 text-sm">
-            <a href="/register"
+            <a href="{{ route('register') }}"
               title="Klik untuk membuat akun baru"
               class="text-black hover:text-primary duration-200">
               Daftar Akun
@@ -91,7 +91,7 @@
             <span>
               |
             </span>
-            <a href="/forgot-password"
+            <a href="{{ route('password.request') }}"
               title="Klik untuk mengubah kata sandi Anda"
               class="text-black hover:text-primary duration-200">
               Lupa Kata Sandi?

@@ -16,7 +16,7 @@
   <!-- Navigation: Start -->
   <ul class="w-full flex flex-col mt-5 gap-2 text-black font-bold text-sm">
     <li class="flex">
-      <a href="/panel"
+      <a href="{{ route('books.index') }}"
         class="{{ request()->path() === 'panel' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Semua Karya'">
         {{ auth()->user()->role === 'admin' ? 'Semua Karya' : 'Karya Saya' }}
@@ -25,7 +25,7 @@
     
     @if (auth()->user()->role === 'admin')
     <li class="flex">
-      <a href="/panel/users"
+      <a href="{{ route('users.index') }}"
         class="{{ request()->path() === 'panel/users' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Manajemen Pengguna'">
         Manajemen Pengguna
@@ -34,14 +34,14 @@
     @endif
 
     <li class="flex">
-      <a href="/panel/profile"
+      <a href="{{ route('profile.show') }}"
         class="{{ request()->path() === 'panel/profile' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Pengaturan Data'">
         Pengaturan Data
       </a>
     </li>
     <li class="flex">
-      <a href="/panel/change-password"
+      <a href="{{ route('change-password.show') }}"
         class="{{ request()->path() === 'panel/change-password' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Pengaturan Kata Sandi'">
         Pengaturan Kata Sandi

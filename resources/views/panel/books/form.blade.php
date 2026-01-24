@@ -10,7 +10,7 @@
       <!-- Meta Tag - Support Responsive Layout: End -->
 
       <!-- Title: Start -->
-      <title>Panel - Tambah Karya | {{ config('app.name', 'Digital Library') }}</title>
+      <title>Panel - {{ $book ? 'Ubah Karya' : 'Tambah Karya' }} | {{ config('app.name', 'Digital Library') }}</title>
       <!-- Title: End -->
 
       <!-- Laravel Assets: Start -->

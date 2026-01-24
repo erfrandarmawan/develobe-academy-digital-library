@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckUserStatus;
@@ -27,7 +28,7 @@ Route::middleware('auth')->get('/books/view/{book}', function(Book $book) {
     }, 200, [
         'Content-Type' => 'application/pdf',
         'Content-Disposition' => 'inline; filename="'.basename($file).'"',
-        'Accept-Ranges' => 'bytes', // IMPORTANT for pdf.js
+        'Accept-Ranges' => 'bytes'
     ]);
 })->name('frontpage.book.view');
 
@@ -58,17 +59,29 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
 
     Route::get('/panel/book/{book}/approval', [BookController::class, 'showApproval'])->name('books.show.approval');
     Route::put('/panel/book/{book}/approval', [BookController::class, 'handleApproval'])->name('books.approval');
+    
+
+    Route::get('/panel/category/create', [CategoryController::class, 'showCreateForm'])->name('categories.show.create');
+    Route::post('/panel/category', [CategoryController::class, 'handleCreate'])->name('categories.create');
+    
+    Route::get('/panel/category/{category}/edit', [CategoryController::class, 'showUpdateForm'])->name('categories.show.update');
+    Route::put('/panel/category/{category}', [CategoryController::class, 'handleUpdate'])->name('categories.update');
+    
+    Route::delete('/panel/category/{category}/delete', [CategoryController::class, 'handleDelete'])->name('categories.delete');
 
 
     Route::get('/panel/users', [UserController::class, 'index'])->name('users.index');
     Route::put('/users/{user}/block', [UserController::class, 'handleBlock'])->name('users.block');
     Route::put('/users/{user}/unblock', [UserController::class, 'handleUnblock'])->name('users.unblock');
 
+
     Route::get('/panel/profile', [UserController::class, 'showProfileForm'])->name('profile.show');
     Route::put('/panel/profile', [UserController::class, 'handleUpdateProfile'])->name('profile.update');
+
 
     Route::get('/panel/change-password', [UserController::class, 'showChangePasswordForm'])->name('change-password.show');
     Route::put('/panel/change-password', [UserController::class, 'handleChangePassword'])->name('change-password.update');
 
+    
     Route::post('/logout', [AuthController::class, 'handleLogout'])->name('logout');
 });

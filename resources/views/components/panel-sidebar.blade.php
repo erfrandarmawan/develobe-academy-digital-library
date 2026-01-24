@@ -25,6 +25,14 @@
     
     @if (auth()->user()->role === 'admin')
     <li class="flex">
+      <a href="{{ route('categories.index') }}"
+        class="{{ request()->path() === 'panel/categories' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
+        title="Klik untuk membuka halaman 'Manajemen Kategori'">
+        Manajemen Kategori
+      </a>
+    </li>
+
+    <li class="flex">
       <a href="{{ route('users.index') }}"
         class="{{ request()->path() === 'panel/users' ? 'text-white bg-primary' : 'hover:bg-gray-500/5 hover:text-primary' }} rounded-md w-full px-2.5 py-2 duration-200"
         title="Klik untuk membuka halaman 'Manajemen Pengguna'">

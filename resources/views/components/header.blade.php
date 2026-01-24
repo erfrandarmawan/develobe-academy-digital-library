@@ -96,6 +96,25 @@
           Semua Karya
         </a>
       </li>
+
+      @if (auth()->user()->role === 'admin')
+        <li class="flex">
+          <a href="{{ route('categories.index') }}"
+            class="hover:text-primary duration-200"
+            title="Klik untuk membuka halaman 'Manajemen Kategori'">
+            Manajemen Kategori
+          </a>
+        </li>
+
+        <li class="flex">
+          <a href="{{ route('users.index') }}"
+            class="hover:text-primary duration-200"
+            title="Klik untuk membuka halaman 'Manajemen Pengguna'">
+            Manajemen Pengguna
+          </a>
+        </li>
+      @endif
+
       <li>
         <a href="{{ route('profile.show') }}"
           class="hover:text-primary duration-200"

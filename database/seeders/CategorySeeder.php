@@ -23,7 +23,8 @@ class CategorySeeder extends Seeder
 
         foreach ($categories as $name) {
             Category::create([
-                'title' => $name
+                'title' => $name,
+                'image_path' => 'placeholder.jpg'
             ]);
         }
     }

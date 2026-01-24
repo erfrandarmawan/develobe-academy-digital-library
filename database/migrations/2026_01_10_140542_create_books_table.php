@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum('status', ['waiting approval', 'approved', 'rejected']);
 
             $table->timestamp('approved_at')->nullable();
+            $table->unsignedBigInteger('total_views')->default(0);
 
             $table->timestamps(); // created_at, updated_at
             $table->softDeletes(); // deleted_at

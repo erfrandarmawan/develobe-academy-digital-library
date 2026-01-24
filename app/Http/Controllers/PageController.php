@@ -61,6 +61,23 @@ class PageController extends Controller
             abort(404);
         }
 
+        $sessionKey = "viewed_book_{$book->id}";
+
+        // Count view only once every 30 minutes
+        if (!session()->has($sessionKey)) {
+            $book->increment('total_views');
+
+            // store timestamp to throttle refresh
+            session([$sessionKey => now()]);
+        } else {
+            // re-allow after 30 minutes
+            $lastViewed = session($sessionKey);
+            if (now()->diffInMinutes($lastViewed) >= 30) {
+                $book->increment('total_views');
+                session([$sessionKey => now()]);
+            }
+        }
+
         return view('books.details', compact('book'));
     }
 }

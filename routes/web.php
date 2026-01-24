@@ -7,11 +7,29 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckUserStatus;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Models\Book;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', [PageController::class, 'index'])->name('frontpage.home');
 Route::get('/categories', [PageController::class, 'showCategories'])->name('frontpage.categories');
 Route::get('/books', [PageController::class, 'showBooks'])->name('frontpage.books');
 Route::get('/books/{book:slug}', [PageController::class, 'showBookDetails'])->name('frontpage.book.details');
+
+Route::middleware('auth')->get('/books/view/{book}', function(Book $book) {
+    $file = Storage::disk('public')->path($book->file_path);
+
+    if (!file_exists($file)) {
+        abort(404);
+    }
+
+    return response()->stream(function () use ($file) {
+        readfile($file);
+    }, 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="'.basename($file).'"',
+        'Accept-Ranges' => 'bytes', // IMPORTANT for pdf.js
+    ]);
+})->name('frontpage.book.view');
 
 Route::middleware(RedirectIfAuthenticated::class)->group(function() {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

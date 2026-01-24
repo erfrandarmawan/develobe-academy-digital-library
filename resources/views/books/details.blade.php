@@ -16,6 +16,10 @@
       <!-- Laravel Assets: Start -->
       @vite(['resources/css/app.css', 'resources/js/app.js'])
       <!-- Laravel Assets: End -->
+
+      <!-- External Assets: Start -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.3.122/pdf.min.js"></script>
+      <!-- External Assets: End -->
     </head>
     <body class="w-full flex flex-col">
       <!-- Header Component: Start -->
@@ -78,18 +82,79 @@
           <!-- Book Description: End -->
 
           <!-- Read Button: Start -->
-          <a href="#"
-            class="w-fit mt-5 font-bold uppercase border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4"
-            title="Klik untuk membaca buku">
-            Baca Online
-          </a>
+          @if(auth()->check())
+            <button id="readBtn"
+              class="w-fit mt-5 font-bold uppercase border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4 cursor-pointer">
+              Baca Online
+            </button>
+          @else
+            <button id="guestAlertBtn"
+              class="w-fit mt-5 font-bold uppercase border border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary duration-200 py-2 px-4 cursor-pointer">
+              Baca Online
+            </button>
+          @endif
           <!-- Read Button: End -->
         </div>
       </section>
       <!-- Book Details Section: End -->
 
+      <!-- PDF Viewer: Start -->
+      @auth
+        <div id="pdfModal"
+          class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50">
+          <div class="bg-white w-[90%] h-[90%] rounded-xl overflow-hidden flex flex-col">
+            <div class="flex justify-between items-center p-3 border-b">
+              <span class="font-semibold">Baca Buku</span>
+              <button id="closeModal" class="text-red-500 font-bold text-xl">✕</button>
+            </div>
+
+            <div class="flex-1 overflow-auto">
+              <canvas id="pdfCanvas" class="w-full"></canvas>
+            </div>
+          </div>
+        </div>
+      @endauth
+      <!-- PDF Viewer: End -->
+
       <!-- Footer Component: Start -->
       <x-footer></x-footer>
       <!-- Footer Component: End -->
+
+      <script>
+        // Guest Alert
+        @guest
+        document.getElementById('guestAlertBtn').addEventListener('click', () => {
+          alert("Silakan login untuk membaca buku ini secara online.");
+        });
+        @endguest
+
+        // PDF Viewer with Auth Validation
+        @auth
+        const readBtn = document.getElementById('readBtn');
+        const pdfModal = document.getElementById('pdfModal');
+        const closeModal = document.getElementById('closeModal');
+        const pdfUrl = "{{ route('frontpage.book.view', $book->id) }}";
+        
+        const pdfCanvas = document.getElementById('pdfCanvas');
+        const ctx = pdfCanvas.getContext('2d');
+
+        readBtn.addEventListener('click', () => {
+          pdfModal.style.display = 'flex';
+
+          pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+            pdf.getPage(1).then(page => {
+              const viewport = page.getViewport({ scale: 1.3 });
+              pdfCanvas.width = viewport.width;
+              pdfCanvas.height = viewport.height;
+              page.render({ canvasContext: ctx, viewport });
+            });
+          });
+        });
+
+        closeModal.addEventListener('click', () => {
+          pdfModal.style.display = 'none';
+        });
+        @endauth
+      </script>
     </body>
 </html>

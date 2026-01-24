@@ -61,6 +61,8 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
     Route::put('/panel/book/{book}/approval', [BookController::class, 'handleApproval'])->name('books.approval');
     
 
+    Route::get('/panel/categories', [CategoryController::class, 'index'])->name('categories.index');
+
     Route::get('/panel/category/create', [CategoryController::class, 'showCreateForm'])->name('categories.show.create');
     Route::post('/panel/category', [CategoryController::class, 'handleCreate'])->name('categories.create');
     

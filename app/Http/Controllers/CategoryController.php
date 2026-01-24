@@ -58,8 +58,12 @@ class CategoryController extends Controller
             'image' => 'nullable|image|max:2048'
         ]);
 
+        $category->title = $request->title;
+
         if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($category->image_path);
+            if ($category->image_path){
+                Storage::disk('public')->delete($category->image_path);
+            }
             $category->image_path = $request->file('image')->store('categories/images', 'public');
         }
 

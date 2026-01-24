@@ -53,11 +53,9 @@
             <table class="min-w-max w-full h-full border border-gray-200 rounded-lg text-left text-xs lg:text-sm">
               <thead class="bg-gray-100">
                 <tr>
-                  <th class="px-3 py-2 w-80">Action</th>
+                  <th class="px-3 py-2 w-40">Action</th>
                   <th class="px-3 py-2 w-40">Title</th>
-                  <th class="px-3 py-2 w-40">Image Path</th>
-                  <th class="px-3 py-2 w-50">Created At</th>
-                  <th class="px-3 py-2 w-40">Created By</th>
+                  <th class="px-3 py-2 w-40">Created At</th>
                 </tr>
               </thead>
 
@@ -85,16 +83,7 @@
                     {{ $category->title }}
                   </td>
                   <td class="px-3 py-2">
-                    {{ $category->slug }}
-                  </td>
-                  <td class="px-3 py-2">
-                    {{ $category->category->title }}
-                  </td>
-                  <td class="px-3 py-2">
                     {{ $category->created_at->format('d M Y - H:i') }} WIB
-                  </td>
-                  <td class="px-3 py-2">
-                    {{ $category->user->name }}
                   </td>
                 </tr>
                 @empty

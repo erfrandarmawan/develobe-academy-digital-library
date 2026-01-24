@@ -146,6 +146,9 @@ class BookController extends Controller
             ? 'approved'
             : 'rejected';
 
+        // Update book approved_at
+        $book->approved_at = now();
+
         // Save to database
         $book->save();
 

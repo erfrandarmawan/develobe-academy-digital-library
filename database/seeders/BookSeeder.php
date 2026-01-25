@@ -31,8 +31,8 @@ class BookSeeder extends Seeder
                 'description' => fake()->text(200),
 
                 // placeholder image + file
-                'image_path' => 'placeholder.jpg',
-                'file_path' => 'dummy.pdf',
+                'image_path' => 'books/images/sample.jpg',
+                'file_path' => 'books/files/sample.pdf',
 
                 'status' => $status,
                 'approved_at' => $status === 'approved' ? now()->subDays(rand(1, 30)) : null,

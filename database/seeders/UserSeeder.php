@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'email' => 'erfrandarmawan@develobe.id',
             'password' => Hash::make('test1234'),
             'role' => 'admin',
+            'avatar_path' => 'avatars/sample.jpg'
         ]);
 
         // User
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
             'email' => 'testuser@mailnesia.com',
             'password' => Hash::make('123456'),
             'role' => 'user',
+            'avatar_path' => 'avatars/sample.jpg'
         ]);
     }
 }

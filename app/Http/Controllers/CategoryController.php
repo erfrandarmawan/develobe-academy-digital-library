@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Storage;
 class CategoryController extends Controller
 {
     public function index(){
+        $user = auth()->user();
+
+        // Check role
+        if ($user->role !== 'admin') {
+            // Redirect to book list
+            return redirect()->route('books.index');
+        }
+
         $categories = Category::orderBy('title', 'asc')
             ->paginate(10);
 
@@ -17,12 +25,28 @@ class CategoryController extends Controller
     }
 
     public function showCreateForm(){
+        $user = auth()->user();
+
+        // Check role
+        if ($user->role !== 'admin') {
+            // Redirect to book list
+            return redirect()->route('books.index');
+        }
+
         return view('panel.categories.form', [
             'category' => null
         ]);
     }
 
     public function showUpdateForm(Category $category){
+        $user = auth()->user();
+
+        // Check role
+        if ($user->role !== 'admin') {
+            // Redirect to book list
+            return redirect()->route('books.index');
+        }
+        
         return view('panel.categories.form', [
             'category' => $category
         ]);

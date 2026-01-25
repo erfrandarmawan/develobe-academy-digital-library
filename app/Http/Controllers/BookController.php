@@ -37,6 +37,20 @@ class BookController extends Controller
     }
 
     public function showUpdateForm(Book $book){
+        $user = auth()->user();
+
+        // Check author
+        if ($book->user_id !== $user->id){
+            // Redirect to book list
+            return redirect()->route('books.index');
+        }
+
+        // Check book status
+        if ($book->status === 'approved'){
+            // Redirect to book list
+            return redirect()->route('books.index');
+        }    
+
         return view('panel.books.form', [
             'book' => $book,
             'categories' => Category::all(),
@@ -44,6 +58,20 @@ class BookController extends Controller
     }
 
     public function showApproval(Book $book){
+        $user = auth()->user();
+
+        // Check role
+        if ($user->role !== 'admin') {
+            // Redirect to book list
+            return redirect()->route('books.index');
+        }
+
+        // Check book status
+        if ($book->status !== 'waiting approval'){
+            // Redirect to book list
+            return redirect()->route('books.index');
+        }
+
         return view('panel.books.detail', [
             'book' => $book,
             'categories' => Category::all(),

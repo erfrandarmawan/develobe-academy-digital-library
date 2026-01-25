@@ -68,7 +68,7 @@
                 @forelse ($books as $book)
                 <tr class="hover:bg-gray-50 duration-150">
                   <td class="px-3 py-2 flex flex-row gap-2">
-                    @if ($book->status === 'waiting approval')
+                    @if ($book->status === 'waiting approval' && auth()->user()->role === 'admin')
                     <a href="{{ route('books.show.approval', $book) }}"
                       class="border border-yellow-500 bg-yellow-500 text-white rounded-md hover:bg-white hover:text-yellow-500 duration-200 py-1 px-2">
                       Review

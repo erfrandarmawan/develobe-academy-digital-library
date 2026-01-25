@@ -12,7 +12,7 @@ class PageController extends Controller
     public function index(){
         $books = Book::with(['user', 'category'])
             ->where('status', 'approved')
-            ->orderBy('approved_at', 'desc')
+            ->orderBy('total_views', 'desc')
             ->limit(8)
             ->get();
 
